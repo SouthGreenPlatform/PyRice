@@ -3,9 +3,9 @@
 
 ## Instruction for install package on git (on products branch only)
 
-- Clone project on PyRice `products` branch
+- Clone project on PyRice `master` branch
   ```
-  git clone --branch products https://github.com/pierrelarmande/PyRice 
+  git clone https://github.com/SouthGreenPlatform/PyRice.git
   ```
 ## Instruction for install package on pypi
 
