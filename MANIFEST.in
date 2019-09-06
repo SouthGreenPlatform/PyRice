@@ -1,0 +1,4 @@
+include README.md
+include LICENSE.txt
+include pyrice/support/*
+include pyrice/database_description.xml

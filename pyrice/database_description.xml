@@ -1,0 +1,268 @@
+<databases>
+    <database dbname="oryzabase" type="text/html" method="POST">
+        <link stern="https://shigen.nig.ac.jp/rice/oryzabase/gene/advanced/list"/>
+        <headers>
+            <header type="">CGSNL Gene Symbol</header>
+            <header type="">Gene symbol synonym(s)</header>
+            <header type="">CGSNL Gene Name</header>
+            <header type="">Gene name synonym(s)</header>
+            <header type="">Chr. No.</header>
+            <header type="">Trait Class</header>
+            <header type="">Gene Ontology</header>
+            <header type="">Trait Ontology</header>
+            <header type="">Plant Ontology</header>
+            <header type="">RAP ID</header>
+            <header type="">Mutant Image</header>
+        </headers>
+        <fields>
+            <field>rapId</field>
+        </fields>
+        <data_struct indicator="table" identifier="class" identification_string="table_summery_list table_nowrapTh max_width_element" line_separator="tr" cell_separator="td"/>
+        <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
+    </database>
+    <database dbname="rnd" type="text/html" method="GET">
+        <link stern="https://bis.zju.edu.cn/ricenetdb/genenetwork.php?" aft=""/>
+        <headers>
+            <header type="">Upstream and Downstream Genes</header>
+        </headers>
+        <fields>
+            <field op="=">UPID</field>
+			<field op="=">DOWNID</field>
+        </fields>
+        <data_struct indicator="div" identifier="align" identification_string="center" line_separator="tr" cell_separator="td"/>
+        <prettify replaceBy=' '>\n>LOC_.*\n|\n|\r|\t|\xa0</prettify>
+    </database>
+    <database dbname="rapdb" type="text/html" method="GET">
+        <link stern="https://rapdb.dna.affrc.go.jp/tools/search/run?type=locus&amp;" aft="&amp;submit=Search&amp;id=on&amp;size=10"/>
+        <headers>
+            <header type="">ID</header>
+            <header type="">Description</header>
+            <header type="">Position</header>
+            <header type="">RAP-DB Gene Symbol Synonym(s)</header>
+            <header type="">RAP-DB Gene Name Synonym(s)</header>
+            <header type="">CGSNL Gene Symbol</header>
+            <header type="">CGSNL Gene Name</header>
+            <header type="">Oryzabase Gene Symbol Synonym(s)</header>
+            <header type="">Oryzabase Gene Name Synonym(s)</header>
+        </headers>
+        <fields>
+            <field op="=">keyword</field>
+        </fields>
+        <data_struct indicator="table" identifier="id" identification_string="result_table" line_separator="tr" cell_separator="td"/>
+        <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
+    </database>
+    <database dbname="gramene" type="text/JSON" method="GET" normalize="false">
+        <link stern="http://data.gramene.org/v60/genes?" aft=""/>
+        <fields>
+            <field op="=">_id</field>
+        </fields>
+    </database>
+
+    <database dbname="urgi" type="text/JSON" method="GET" normalize="false">
+        <link stern="https://urgi.versailles.inra.fr/wheatis-srv/results/facet?" aft="&amp;start=1&amp;length=10"/>
+        <fields>
+            <field op="=">term</field>
+        </fields>
+    </database>
+
+    <database dbname="ic4r" type="text/JSON" method="GET">
+        <link stern="http://expression.ic4r.org/api/fpkm?" aft=""/>
+        <headers>
+            <header type="">All</header>
+            <header type="">OS Gene ID</header>
+            <header type="">LOC Gene ID</header>
+            <header type="">Symbol</header>
+            <header type="">Location</header>
+            <header type="">Description</header>
+            <header type="">Box Plot</header>
+           <!--  <header type="">Project ID</header>
+            <header type="">Experiment ID</header>
+            <header type="">Experiment name</header>
+            <header type="">Variety</header>
+            <header type="">Development stage</header>
+            <header type="">Tissue</header>
+            <header type="">Expression value</header> -->
+        </headers>
+        <fields>
+            <field op="=">gene</field>
+        </fields>
+        <data_struct indicator="table" identifier="" identification_string="" line_separator="tr" cell_separator="td"/>
+        <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
+    </database>
+
+    <database dbname="arabidpsis" type="text/html" method="GET">
+        <link stern="https://www.arabidopsis.org/servlets/TairObject?" aft="&amp;type=locus"/>
+        <headers>
+            <header type="">Representative Gene Model</header>
+            <header type="">Gene Model Type</header>
+            <header type="">Other names</header>
+            <header type="">Description</header>
+            <header type="">Map Detail Image</header>
+            <header type="">Annotations s</header>
+            <!--<header type="">Gene Ontology</header>-->
+            <!--<header type="">Trait Ontology</header>-->
+            <!--<header type="">Plant Ontology</header>-->
+            <!--<header type="">RAP ID</header>-->
+            <!--<header type="">Mutant Image</header> -->
+        </headers>
+         <fields>
+            <field op="=">name</field>
+        </fields>
+        <data_struct indicator="table" identifier="" identification_string="" line_separator="tr" cell_separator="td"/>
+        <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
+    </database>
+
+    <database dbname="plntfdb" type="text/html" method="GET">
+        <link stern="http://plntfdb.bio.uni-potsdam.de/v3.0/get_id.php?" aft=""/>
+        <headers>
+            <header type="">Species</header>
+            <header type="">Protein model</header>
+            <header type="">Family</header>
+        </headers>
+        <fields>
+            <field op="=">seq_id</field>
+        </fields>
+        <data_struct indicator="div" identifier="id" identification_string="subcontent" line_separator="tr" cell_separator="td"/>
+        <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
+    </database>
+    <database dbname="funricegene_genekeywords" type="text/csv" method="GET" encoding="Windows-1252" deli="&#009;">
+        <link stern="https://funricegenes.github.io/geneKeyword.table.txt" aft=""/>
+        <headers>
+            <header>Symbol</header>
+            <header>RAPdb</header>
+            <header>MSU</header>
+            <header>Keyword</header>
+            <header>Title</header>
+        </headers>
+        <fields>
+            <field>RAPdb</field>
+            <field>MSU</field>
+        </fields>
+    </database>
+    <database dbname="funricegene_faminfo" type="text/csv" method="GET" encoding="Windows-1252" deli="&#009;">
+        <link stern="https://funricegenes.github.io/famInfo.table.txt" aft=""/>
+        <headers>
+            <header>Symbol</header>
+            <header>RAPdb</header>
+            <header>MSU</header>
+            <header>Name</header>
+        </headers>
+        <fields>
+            <field>RAPdb</field>
+            <field>MSU</field>
+        </fields>
+    </database>
+    <database dbname="funricegene_geneinfo" type="text/csv" method="GET" encoding="Windows-1252" deli="&#009;">
+        <link stern="https://funricegenes.github.io/geneInfo.table.txt" aft=""/>
+        <headers>
+            <header>Symbol</header>
+            <header>RAPdb</header>
+            <header>MSU</header>
+        </headers>
+        <fields>
+            <field>RAPdb</field>
+            <field>MSU</field>
+        </fields>
+    </database>
+    <database dbname="snpseek" type="text/JSON" method="GET" normalize="false">
+        <link stern="http://snp-seek.irri.org/ws/genomics/gene/osnippo/" aft=""/>
+        <fields>
+            <field></field>
+            <field op="=">start</field>
+            <field op="=">end</field>
+            <field op="=">model</field>
+        </fields>
+        <data_struct indicator="div" identifier="id" identification_string="subcontent" line_separator="tr" cell_separator="td"/>
+    </database>
+    <database dbname="msu" type="text/html" method="GET">
+        <link stern="http://rice.plantbiology.msu.edu/cgi-bin/sequence_display.cgi?" aft=""/>
+        <headers>
+            <header type="">Genomic Sequence</header>
+            <header type="">CDS</header>
+            <header type="">Protein</header>
+        </headers>
+        <fields>
+            <field op="=">orf</field>
+        </fields>
+        <data_struct indicator="div" identifier="class" identification_string="content" line_separator="div" cell_separator="pre"/>
+        <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t|\*</prettify>
+    </database>
+    <database dbname="planttfdb" type="text/csv" method="downloadable">
+        <link stern="http://planttfdb.cbi.pku.edu.cn/download.php" aft=""/>
+    </database>
+    <database dbname="uniprot_getid" type="text/html" method="GET">
+        <link stern="http://www.uniprot.org/uniprot/?query=" aft=""/>
+        <headers>
+            <header type=""></header>
+            <header type="">Entry</header>
+            <header type="">Entry name</header>
+            <header type=""></header>
+            <header type="">Protein names</header>
+            <header type="">Gene names</header>
+            <header type="">Organism</header>
+            <header type="">Length</header>
+            <header type=""></header>
+        </headers>
+        <fields>
+            <field lowercase="true" op=":">gene</field>
+        </fields>
+        <data_struct indicator="tbody" identifier="" identification_string="" line_separator="tr" cell_separator="td"/>
+        <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
+    </database>
+    <database dbname="uniprot_getprotein" type="text/html" method="GET">
+        <link stern="http://www.uniprot.org/uniprot/" aft=".rdf"/>
+        <headers>
+            <header></header>
+        </headers>
+        <fields>
+            <field lowercase="true" op=""></field>
+        </fields>
+        <data_struct indicator="tbody" identifier="" identification_string="" line_separator="tr" cell_separator="td"/>
+        <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
+    </database>
+    <database dbname="kegg" type="text/html" method="GET">
+        <link stern="http://rest.kegg.jp/" aft=""/>
+        <headers>
+            <header>Definition</header>
+        </headers>
+        <fields>
+            <field lowercase="true" op="/">get</field>
+        </fields>
+        <data_struct indicator="html" identifier="" line_separator="body" cell_separator="p"/>
+        <prettify replaceBy='\s'>((^(?!DEFINITION.*).*)(^(?!DESCRIPTION.*).*))|\n|(DEFINITION *)|(DESCRIPTION *)</prettify>
+    </database>
+    <database dbname="eggnog_og" type="text/JSON" method="GET" normalize="true">
+        <link stern="http://eggnogapi.embl.de/nog_data/json/" aft=""/>
+        <headers>
+            <header>go_header</header>
+        </headers>
+        <fields>
+            <field lowercase="true" op="/">go_terms</field>
+        </fields>
+    </database>
+    <database dbname="pfam_clan" type="text/csv" method="GET" encoding="Windows-1252" deli="&#009;" location="local">
+        <link stern="C:\Users\XPS 15-9550\Git\rRice_legacy\inst\python\data\pfam\Pfam-A.clans.tsv" aft=""/>
+        <headers>
+            <header>Pfam_pf</header>
+            <header>Pfam_clan</header>
+            <header></header>
+            <header></header>
+            <header>Description</header>
+        </headers>
+        <fields>
+            <field>Pfam_pf</field>
+            <field>Pfam_clan</field>
+        </fields>
+    </database>
+    <database dbname="kegg_ko" type="text/html" method="GET">
+        <link stern="http://www.genome.jp/dbget-bin/www_bget?" aft=""/>
+        <headers>
+            <header>Definition</header>
+        </headers>
+        <fields>
+            <field lowercase="true" op=":">ko</field>
+        </fields>
+        <data_struct indicator="html" identifier="" line_separator="body" cell_separator="p"/>
+        <prettify replaceBy='\s'>((^(?!DEFINITION.*).*)(^(?!DESCRIPTION.*).*))|\n|(DEFINITION *)|(DESCRIPTION *)</prettify>
+    </database>
+</databases>

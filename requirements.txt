@@ -1,0 +1,9 @@
+pickleshare==0.7.4
+wget==3.2
+multiprocessing-logging==0.3.0
+regex==2018.8.29
+requests==2.19.1
+pandas==0.23.4
+json2table==1.1.5
+beautifulsoup4==4.6.3
+urllib3==1.23
