@@ -6,7 +6,7 @@ Pip installation
 
 Install Pillow with :command:`pip`::
 
-    $ pip install Pillow
+    $ pip install pyrice
 
 
 Github installation
