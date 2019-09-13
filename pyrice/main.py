@@ -2,10 +2,10 @@
 from pyrice.multi_query import MultiQuery
 import time
 import csv
-from pyrice.utils import search_text
+from pyrice.utils import search
 from multiprocessing import cpu_count
 from argparse import ArgumentParser
-from pyrice.build_dictionary import update_gene_dictionary, update_rapdb_oryzabase
+from pyrice.build_dictionary import update_gene_dictionary, update_local_database
 
 
 parser = ArgumentParser("PyRice", conflict_handler='resolve')
@@ -19,36 +19,36 @@ args = parser.parse_args()
 
 if __name__ == "__main__":
     # # Search gene and query loc
-    test = MultiQuery()
-    file_id = test.search_gene(chro="chr01", start_pos="1",
+    query = MultiQuery()
+    result = query.search_on_chromosome(chro="chr01", start_pos="1",
                                end_pos="20000", number_process = 4, dbs="all", save_path="./result/")
-    print("Output database:", file_id)
+    print("Output database:", result)
 
 
     # # Query with chromosome
-    test = MultiQuery()
-    db = test.query_iric(chro="chr01", start_pos="1",
+    query = MultiQuery()
+    result = query.query_by_chromosome(chro="chr01", start_pos="1",
                          end_pos="20000", number_process = 4, multi_processing=True, multi_threading=True,
                          dbs="all")
-    test.save_file(db, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
-    print("Output database:", db)
+    query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
+    print("Output database:", result)
 
 
     # # Query with ids, locs and irics
-    test = MultiQuery()
-    db = test.query_ids_locs(idents=["Os08g0164400", "Os07g0586200"],
-                             locs=["LOC_Os10g01006", "LOC_Os07g39750"],
-                             irics=["OsNippo01g010050", "OsNippo01g010300"], number_process = 4,
-                             multi_processing=True, multi_threading=True, dbs="all")
-    test.save_file(db,save_path = "./result/",format=["csv","html","json","pkl"],hyper_link=False)
-    print("Output database:",db)
+    # query = MultiQuery()
+    # result = query.query_by_ids(ids=["Os08g0164400", "Os07g0586200"],
+    #                          locs=["LOC_Os10g01006", "LOC_Os07g39750"],
+    #                          irics=["OsNippo01g010050", "OsNippo01g010300"], number_process = 4,
+    #                          multi_processing=True, multi_threading=True, dbs="all")
+    # query.save(result,save_path = "./result/",format=["csv","html","json","pkl"],hyper_link=False)
+    # print("Output database:",result)
 
     # # Query with new database
-    test = MultiQuery()
-    db = test.new_query(atts=['TRAES3BF001000010CFD'], number_process= 4,
-                        multi_processing=True,multi_threading=True,dbs=['urgi'])
-    test.save_file(db, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
-    print("Output database:",db)
+    # query = MultiQuery()
+    # result = query.query_new_database(atts=['TRAES3BF001000010CFD'], number_process= 4,
+    #                     multi_processing=True,multi_threading=True,dbs=['urgi'])
+    # query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
+    # print("Output database:",result)
 
 
 # chro="chr01", start_pos="1", end_pos="43270923"

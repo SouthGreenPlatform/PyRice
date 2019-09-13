@@ -46,9 +46,9 @@ class MultiQuery():
             self.database_file = f.read()
         f.close()
 
-    def query(self,iricname, db, qfields=[], verbose=False):
+    def query(self, iricname, db, qfields=[], verbose=False):
         """
-        Query one gene with id or loc on each database
+        Query one gene by id or loc on each database
 
         :param iricname: (str) iricname or id of gene
         :param db: (str) name database in 8 databases
@@ -171,7 +171,7 @@ class MultiQuery():
 
     #Do not use
     @staticmethod
-    def save_file(result,save_path,format=None,hyper_link=False):
+    def save(result, save_path, format=None, hyper_link=False):
         """
         Save result of query with differents types of files
 
@@ -304,10 +304,10 @@ class MultiQuery():
                     f.write(html)
                 f.close()
 
-    def query_iric(self, chro, start_pos, end_pos, number_process = cpu_count()-1, multi_processing = False,
+    def query_by_chromosome(self, chro, start_pos, end_pos, number_process = cpu_count()-1, multi_processing = False,
                    multi_threading = True, dbs='all'):
         """
-        Query gene with chromosome
+        Query gene by chromosome
 
         :param chro: (str) chromosome (ex: "chr01")
         :param start_pos: (str) start of chromosome
@@ -334,7 +334,7 @@ class MultiQuery():
                     name_db.append(db)
         #Query in multi_database
         i=1
-        file_id = self.search_gene(chro=chro,start_pos=start_pos,end_pos=end_pos,number_process = number_process)
+        file_id = self.search_on_chromosome(chro=chro,start_pos=start_pos,end_pos=end_pos,number_process = number_process)
         self.result = dict()
         number_query = len(file_id)
         # No multi-processing and No multi-threading
@@ -533,12 +533,12 @@ class MultiQuery():
             p.shutdown()
         return result
 
-    def query_ids_locs(self, idents, locs, irics, number_process = cpu_count()-1, multi_processing = False,
+    def query_by_ids(self, ids, locs, irics, number_process = cpu_count()-1, multi_processing = False,
                    multi_threading = True, dbs='all'):
         """
-        Query gene with id and loc
+        Query gene using id, loc or iric
 
-        :param idents: (list) list id of gene
+        :param ids: (list) list id of gene
         :param locs: (list) list loc of gene
         :param irics: (list) list iric name of gene
         :param number_process: (int) number of process or number of threading
@@ -549,7 +549,7 @@ class MultiQuery():
         :return: a dictionary, format: gene:{database: attribute}
         """
         set_iric = set()
-        for id in idents:
+        for id in ids:
             if id in self.id_dict.keys():
                 set_iric.add(self.id_dict[id])
         for loc in locs:
@@ -750,9 +750,9 @@ class MultiQuery():
                     p.shutdown()
         return self.result
 
-    def new_query(self, atts, number_process = cpu_count() -1, multi_processing = False, multi_threading = True ,dbs = None):
+    def query_new_database(self, atts, number_process = cpu_count() -1, multi_processing = False, multi_threading = True ,dbs = None):
         """
-        Query with new attributes and new databases
+        Query for new attributes on new databases
 
         :param atts: (list) list of new attributes
         :param number_process: (int) number of process or number of threading
@@ -856,9 +856,9 @@ class MultiQuery():
                     p.shutdown()
         return self.result
 
-    def search_gene(self, chro, start_pos, end_pos, number_process = cpu_count()-1, save_path = None, dbs='all'):
+    def search_on_chromosome(self, chro, start_pos, end_pos, number_process = cpu_count()-1, save_path = None, dbs='all'):
         """
-        Search gene in snpseek database
+        Search gene by potision on chromosome
 
         :param chro: (str) chromosome (ex: "chr01")
         :param start_pos: (str) start of chromosome

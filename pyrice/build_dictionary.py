@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from argparse import ArgumentParser
 from pyrice.multi_query import MultiQuery
 from pyrice import multi_query
@@ -9,16 +10,17 @@ import shutil
 import os
 import wget
 
-parser = ArgumentParser("build_dictionary", conflict_handler='resolve')
-parser.add_argument("--rapdb_url", type=str, default="https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2019-03-22.tsv.gz")
-parser.add_argument("--oryzabase_url",type=str, default="https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
-args = parser.parse_args()
+# parser = ArgumentParser("build_dictionary", conflict_handler='resolve')
+# parser.add_argument("--rapdb_url", type=str, default="https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2019-03-22.tsv.gz")
+# parser.add_argument("--oryzabase_url",type=str, default="https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
+# args = parser.parse_args()
 
 dir_path = os.path.dirname(multi_query.__file__)
 
 def update_gene_dictionary():
     """
     Update function for gene dictionary
+
     """
     test = MultiQuery()
     chromosome = ["chr01", "chr02", "chr03", "chr04", "chr05", "chr06", "chr07", "chr08", "chr09", "chr10", "chr11",
@@ -29,7 +31,7 @@ def update_gene_dictionary():
     iric_dict = dict()
     for i in range(len(chromosome)):
         t = time.time()
-        file_id = test.search_gene(chro=chromosome[i], start_pos=start[i],
+        file_id = test.search_on_chromosome(chro=chromosome[i], start_pos=start[i],
                                    end_pos=end[i], number_process=4, dbs=["iric"])
         iric_dict.update(file_id)
         print("Time for search gene on chromosome {} : {}".format(chromosome[i],time.time() - t))
@@ -60,15 +62,25 @@ dest_filepath = "support/rapdb.tsv"
 oryzabase_filepath = 'support/oryzabase.txt'
 
 def gunzip_shutil(source_filepath, dest_filepath, block_size=65536):
+    """
+    Function to unzip file
+
+    :param source_filepath: (str) source file path file .zip
+    :param dest_filepath: (str) destination file path
+    :param block_size: (int)
+
+    """
     with gzip.open(source_filepath, 'rb') as s_file, \
             open(dest_filepath, 'wb') as d_file:
         shutil.copyfileobj(s_file, d_file, block_size)
 
-def update_rapdb_oryzabase(rapdb_url, oryzabase_url):
+def update_local_database(rapdb_url, oryzabase_url):
     """
     Update function for rapdb database and oryzabase database
+
     :param rapdb_url: (str) url for download rapdb database
     :param oryzabase_url: (str) url for download oryzabase database
+
     """
     with open("./support/id_dict.pkl", "rb") as f:
         id_dict = pickle.load(f)

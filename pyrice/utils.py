@@ -7,7 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 import urllib3
 
-def connectionError(link, data=""):
+def connection_error(link, data=""):
     """
     Get result with request post or request get
 
@@ -56,7 +56,7 @@ def execute_query(db, qfields=[], verbose=False):
             for field in fields:
                 data = {field.text: qfields[i]}
                 i += 1
-            return connectionError(link, data)
+            return connection_error(link, data)
         elif db[0]["method"] == "GET":
             query_string = ""
             if db[0]["type"] != "text/csv":
@@ -75,13 +75,13 @@ def execute_query(db, qfields=[], verbose=False):
                 link += query_string + \
                         db[0].find_all("link")[0]["aft"]
                 if verbose: print(link)
-            return connectionError(link)
+            return connection_error(link)
     else:
         return open(link)
 
-def search_text(df, text):
+def search(df, text):
     """
-    Search function on result (file pkl)
+    Search function on result (file .pkl)
 
     :param df: (dataframe) dataframe of pandas
     :param text: (str) text
