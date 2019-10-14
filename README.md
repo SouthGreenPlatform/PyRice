@@ -18,7 +18,7 @@
 
 ### Example of system search_gene
 
-```bash
+```py
 from pyrice.multi_query import MultiQuery
 
 query = MultiQuery()
@@ -51,7 +51,7 @@ Output database:
 
 ### Example of system query_by_chromosome
 
-```bash
+```py
 from pyrice.multi_query import MultiQuery
 
 query = MultiQuery()
