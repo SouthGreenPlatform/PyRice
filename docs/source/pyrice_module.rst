@@ -1,7 +1,7 @@
 Pyrice module
 =============
 
-pyrice.build_dictionary module
+pyrice.build\_dictionary module
 -------------------------------
 
 .. automodule:: pyrice.build_dictionary
@@ -9,7 +9,7 @@ pyrice.build_dictionary module
     :undoc-members:
     :show-inheritance:
 
-pyrice.multi_query module
+pyrice.multi\_query module
 --------------------------
 
 .. automodule:: pyrice.multi_query

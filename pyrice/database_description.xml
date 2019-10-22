@@ -90,7 +90,7 @@
         <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
     </database>
 
-    <database dbname="arabidpsis" type="text/html" method="GET">
+    <database dbname="arabidopsis" type="text/html" method="GET">
         <link stern="https://www.arabidopsis.org/servlets/TairObject?" aft="&amp;type=locus"/>
         <headers>
             <header type="">Representative Gene Model</header>

@@ -12,7 +12,6 @@ import pandas as pd
 import os
 import copy
 import json2table
-from IPython.display import HTML
 
 class MultiQuery():
     """
@@ -254,7 +253,8 @@ class MultiQuery():
                 elif form == "html":
                     my_db = data_folder + "db" + '.html'
                     df = pd.DataFrame.from_dict(html_dict, orient='index')
-                    HTML(df.to_html(my_db,escape=False))
+                    # HTML(df.to_html(my_db,escape=False))
+                    df.to_html(my_db, escape=False)
                 elif form =="json":
                     my_db = data_folder + "db" + '.json'
                     with open(my_db, 'w') as f:
@@ -781,7 +781,7 @@ class MultiQuery():
                 print("Query attribute: {} --- attribute {}/{}".format(key, i, number_query))
                 self.result.setdefault(key,dict())
                 for db in name_db:
-                    tmp = self.query(key, db, [key])
+                    tmp = self.query(key, db, [key],True)
                     if tmp != None:
                         self.result[tmp[0]].setdefault(tmp[1], tmp[2])
                 i+=1

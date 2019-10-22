@@ -18,14 +18,14 @@ parser.add_argument("--number_gene",type = float)
 args = parser.parse_args()
 
 if __name__ == "__main__":
-    # # Search gene and query loc
+    # Search gene and query loc
     query = MultiQuery()
     result = query.search_on_chromosome(chro="chr01", start_pos="1",
                                end_pos="20000", number_process = 4, dbs="all", save_path="./result/")
     print("Output database:", result)
 
 
-    # # Query with chromosome
+    # Query with chromosome
     query = MultiQuery()
     result = query.query_by_chromosome(chro="chr01", start_pos="1",
                          end_pos="20000", number_process = 4, multi_processing=True, multi_threading=True,
@@ -43,12 +43,18 @@ if __name__ == "__main__":
     # query.save(result,save_path = "./result/",format=["csv","html","json","pkl"],hyper_link=False)
     # print("Output database:",result)
 
-    # # Query with new database
+    # Query with new database
     # query = MultiQuery()
     # result = query.query_new_database(atts=['TRAES3BF001000010CFD'], number_process= 4,
     #                     multi_processing=True,multi_threading=True,dbs=['urgi'])
     # query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
     # print("Output database:",result)
+
+    # query = MultiQuery()
+    # result = query.query_new_database(atts=['AT2G03340'], number_process=4,
+    #                                   multi_processing=False, multi_threading=False, dbs=['arabidopsis'])
+    # query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
+    # print("Output database:", result)
 
 
 # chro="chr01", start_pos="1", end_pos="43270923"
