@@ -1,24 +1,38 @@
 
-# Python query engine for PyRice package
+# PyRice - a Python package for query rice gene information
 
-## Instruction for install package on git (on products branch only)
+## Install from source:
 
-- Clone project on PyRice `master` branch
+- Clone project from Github:
   ```
   git clone https://github.com/SouthGreenPlatform/PyRice.git
   ```
-## Instruction for install package on pypi
+## Install from PyPI
 
-- Use pip to install package PyRice
+- Use pip to install package PyRice (the newest version)
     ```
     pip install pyrice
     ```
- 
+    
+- Now there are 2 versions available:
+    
+    - Version 0.1.6: Addition of crawling JavaScript data with Selenium.
+        * If you want to use Selenium, please follow these steps:
+            + Please check carefully the current version of Chrome on your computer before downloading
+            + Download the [Chrome driver](https://chromedriver.chromium.org/downloads).
+            + After downloading, fill the file path lead to Chrome driver before querying:
+                ```py
+                from pyrice import utils
+                utils.chrome_path = "the path of your Chrome driver"
+                ```
+    - Version 0.1.5: Crawl data without Selenium.
+    
+
  ## Instruction 
 
 ### Example of system search_gene
 
-```py
+```python
 from pyrice.multi_query import MultiQuery
 
 query = MultiQuery()
@@ -51,7 +65,7 @@ Output database:
 
 ### Example of system query_by_chromosome
 
-```py
+```python
 from pyrice.multi_query import MultiQuery
 
 query = MultiQuery()
@@ -61,7 +75,7 @@ result = query.query_by_chromosome(chro="chr01", start_pos="1", end_pos="20000",
 
 query.save(result, save_path="./result/",
            format=["csv", "html", "json", "pkl"], hyper_link=False)
-print("Output database:", db)
+print("Output database:", result)
 ```
 ```bash
 Output database:
@@ -86,7 +100,7 @@ Output database:
 ```
 
 ### Example of system query_by_ids
-```py
+```python
 from pyrice.multi_query import MultiQuery
 		
 query = MultiQuery()
@@ -119,7 +133,7 @@ Output database:
 }            
 ```
 ### Example of system query_new_database
-```py
+```python
 from pyrice.multi_query import MultiQuery
     
 query = MultiQuery()
@@ -142,24 +156,40 @@ Output database:
 ```
 ### Example of Build Dictinary Module
 ```py
-from pyrice.build_dictionary import update_gene_dictionary,update_rapdb_oryzabase
+from pyrice.build_dictionary import update_gene_dictionary, update_rapdb_oryzabase
 
 update_gene_dictionary()
 update_rapdb_oryzabase(rapdb_url, oryzabase_url)
 ```
 
 ### Example of Search Module
-You have to save file as .pkl and re-load it again to use search function.
+**You have to save file as .pkl and re-load it again to use search function.**
 
-```py
-from pyrice.utils import search
+```python
+from pyrice import utils 
 import pandas as pd
 
 df1 = pd.read_pickle("./result1/data/db.pkl")
 df2 = pd.read_pickle("./result2/data/db.pkl")
 df = pd.concat([df1,df2])
-result = search(df,"Amino acid ")
+result = utils.search(df,"Amino acid ")
 ```
+
+### Example of SQL Query
+You can execute a SQL query over a pandas dataframe.
+You have to install package [Pandasql](<https://pypi.org/project/pandasql/>). The variable name is same with the table name in SQL query.
+Next, follow the code below to run SQL query:
+```python
+import pandas as pd
+from pandasql import sqldf
+
+data = pd.read_pickle("./result/data/db.pkl")
+data = data.astype(str)
+sql = "SELECT * FROM data WHERE `oryzabase.CGSNL Gene Symbol` = 'TLP27' or `gramene.system_name` = 'oryza_sativa'"
+pysqldf = lambda q: sqldf(q, globals())
+print(pysqldf(sql))
+```
+**The variable name must be same with the table name in SQL query.**
 
 ## List of supported database
 
@@ -170,6 +200,8 @@ result = search(df,"Amino acid ")
 * SNP-Seek
 * Funricegene
 * MSU
+* EMBL-EBI
+* GWAS_ATLAS
 
 ## List of exception
 

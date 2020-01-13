@@ -12,6 +12,9 @@ import pandas as pd
 import os
 import copy
 import json2table
+import glob
+
+download_dir = os.path.join(os.path.dirname(utils.__file__),"support/download/")
 
 class MultiQuery():
     """
@@ -23,6 +26,7 @@ class MultiQuery():
         self.id_dict: dictionary for looking id of gene
         self.oryzabase: dictionary for looking information of gene on oryzabase database
         self.rapdb: dictionary for looking information of gene on rapdb database
+        self.gwas_atlas:  dictionary for looking id of gene on gwas_atlas database
         self.database_file:  database wrapper
         """
         dir_path = os.path.dirname(utils.__file__)
@@ -40,6 +44,9 @@ class MultiQuery():
         f.close()
         with open(os.path.join(dir_path, 'support/rapdb.pkl'), 'rb') as f:
             self.rapdb = pickle.load(f)
+        f.close()
+        with open(os.path.join(dir_path, 'support/gwas_atlas.json'), 'r') as f:
+            self.gwas_atlas = json.load(f)
         f.close()
         with open(os.path.join(dir_path, 'database_description.xml'), 'r') as f:
             self.database_file = f.read()
@@ -67,9 +74,7 @@ class MultiQuery():
             headers.append(header.text)
 
         res = utils.execute_query(database_description, qfields, verbose)
-        # print("from api",iricname, db, qfields,time.time()-t)
         if res == None:
-            # print(iricname, db, qfields, time.time() - t)
             return
         # Handle HTML based query
         if (database_description[0]["type"] == "text/html"):
@@ -85,8 +90,6 @@ class MultiQuery():
             else:
                 data = ret.find_all(database_description[0].find_all("data_struct")[0]["indicator"])
             if data != []:
-                # reg = regex.compile(database_description[0].find_all(
-                #     "prettify")[0].text, regex.MULTILINE)
                 replaceBy = database_description[0].find_all(
                     "prettify")[0]['replaceBy']
                 for dataLine in data[0].find_all(database_description[0].find_all("data_struct")[0]["line_separator"]):
@@ -155,18 +158,41 @@ class MultiQuery():
                                 dict_2[k].add(v)
                         tmp.append(dict_)
             if len(tmp)>0:
-                #self.result[db].setdefault((qfields[0],qfields[1]),tmp)
                 for k, v in dict_2.items():
                     dict_2[k] = repr(v);
-                # self.result[iricname].setdefault(db, dict_2)
-                # print(iricname, db, qfields, time.time() - t)
                 return [iricname,db,dict_2]
-                # if db not in self.result[iricname].keys():
-                #     self.result[iricname].setdefault(db,dict_2)
-                # else:
-                #     self.result[iricname][db].update(dict_2)
-            # for t in tmp:
-                #self.result[db].append([(qfields[0], qfields[1]), t])
+        elif database_description[0]["type"] == "javascript":
+            if db =="embl_ebi":
+                list_of_files = glob.glob(download_dir+'*.tsv') # * means all if need specific format then *.tsv
+                if len(list_of_files) > 0:
+                    latest_file = max(list_of_files, key=os.path.getctime)
+                    dict_jvs = dict()
+                    with open(latest_file) as file:
+                        rd = csv.reader(file, delimiter="\t", quotechar='"')
+                        result = []
+                        for row in rd:
+                            result.append(row)
+                        for i in range(5,len(result)):
+                            for pos_att in range(1,len(result[4])):
+                                dict_jvs.setdefault(result[i][0]+" - "+result[4][pos_att],result[i][pos_att])
+                    # print(dict_jvs)
+                    file.close()
+                    os.remove(latest_file)
+                    return [iricname,db,dict_jvs]
+            elif db == "gwas_atlas":
+                list_of_files = glob.glob(download_dir + '*.csv')  # * means all if need specific format then *.csv
+                if len(list_of_files) > 0:
+                    latest_file = max(list_of_files, key=os.path.getctime)
+                    data = pd.read_csv(latest_file)
+                    data2dict = {}
+                    for key in data.columns:
+                        data2dict.setdefault(key, [])
+                        for value in data[key]:
+                            if key == "Mapped Gene(s)" or key == "Consequence Type(s)":
+                                value = value.replace('\n', ' ')
+                            data2dict[key].append(value)
+                    os.remove(latest_file)
+                    return [iricname, db, data2dict]
 
     #Do not use
     @staticmethod
@@ -241,12 +267,16 @@ class MultiQuery():
                 if form == "csv" :
                     my_db = data_folder + "db" + '.csv'
                     df = pd.DataFrame.from_dict(csv_dict, orient='index')
+                    df.reset_index(level=0, inplace=True)
+                    df.rename(columns={'index': 'iric_name'}, inplace=True)
                     with open(my_db, 'w') as f:
                         df.to_csv(f, header=True)
                     f.close()
                 elif form == "pkl":
                     my_db = data_folder + "db" + '.pkl'
                     df = pd.DataFrame.from_dict(csv_dict, orient='index')
+                    df.reset_index(level=0, inplace=True)
+                    df.rename(columns={'index': 'iric_name'}, inplace=True)
                     with open(my_db,"wb") as f:
                         df.to_pickle(f)
                     f.close()
@@ -282,11 +312,8 @@ class MultiQuery():
                                 if "entries" in v["annotations"]["GO"].keys():
                                     # list entries
                                     for j in range(len(v["annotations"]["GO"]["entries"])):
-                                        # print(v["annotations"]["GO"]["entries"][j],type(v["annotations"]["GO"]["entries"][j]))
                                         for att in entries:
                                             v["annotations"]["GO"]["entries"][j].pop(att, None)
-                                        # print(v["annotations"]["GO"]["entries"][j],
-                                        #     type(v["annotations"]["GO"]["entries"][j]))
                         if "homology" in v.keys():
                             for att in homology:
                                 v["homology"].pop(att, None)
@@ -315,14 +342,14 @@ class MultiQuery():
         :param number_process: (int) number of process or number of threading
         :param multi_processing: (bool) if True use multi_processing
         :param multi_threading: (bool) if True use multi_threading
-        :param dbs: list databases (support 7 available databases)
+        :param dbs: list databases (support 10 available databases)
 
         :return: a dictionary, format : gene:{database: attributes}
         """
         #Check support of database
         support_db = ["oryzabase", "rapdb", "gramene", "funricegene_genekeywords",
                    "funricegene_faminfo", "msu", "ic4r",
-                   "funricegene_geneinfo"]
+                   "funricegene_geneinfo","embl_ebi","gwas_atlas"]
         if dbs == 'all':
             name_db = support_db
         else:
@@ -350,7 +377,7 @@ class MultiQuery():
                     elif db == "rapdb":
                         if key in self.rapdb.keys():
                             self.result[key].setdefault("rapdb", self.rapdb[key]["rapdb"])
-                    elif db == "gramene" or db == "ic4r":
+                    elif db == "gramene" or db == "ic4r" or db=="embl_ebi":
                         for ident in value["raprepName"]:
                             tmp = self.query(key, db, [ident])
                             if tmp != None:
@@ -375,6 +402,12 @@ class MultiQuery():
                         else:
                             for loc in value["msu7Name"]:
                                 tmp = self.query(key, db, ["", loc])
+                                if tmp != None:
+                                    self.result[tmp[0]].setdefault(tmp[1], tmp[2])
+                    elif db=="gwas_atlas":
+                        for ident in value["raprepName"]:
+                            if ident in self.gwas_atlas.keys():
+                                tmp = self.query(key, db, [self.gwas_atlas[ident]])
                                 if tmp != None:
                                     self.result[tmp[0]].setdefault(tmp[1], tmp[2])
         # Multi-processing and Multi-threading
@@ -403,7 +436,7 @@ class MultiQuery():
                         elif db == "rapdb":
                             if key in self.rapdb.keys():
                                 self.result[key].setdefault("rapdb", self.rapdb[key]["rapdb"])
-                        elif db == "gramene" or db == "ic4r":
+                        elif db == "gramene" or db == "ic4r" or db=="embl_ebi":
                             for ident in value["raprepName"]:
                                 list_ids.append([ident])
                                 list_dbs.append(db)
@@ -428,6 +461,12 @@ class MultiQuery():
                             else:
                                 for loc in value["msu7Name"]:
                                     list_ids.append(["",loc])
+                                    list_dbs.append(db)
+                                    list_key.append(key)
+                        elif db=="gwas_atlas":
+                            for ident in value["raprepName"]:
+                                if ident in self.gwas_atlas.keys():
+                                    list_ids.append([self.gwas_atlas[ident]])
                                     list_dbs.append(db)
                                     list_key.append(key)
                     count_gene += 1
@@ -462,7 +501,7 @@ class MultiQuery():
                     elif db == "rapdb":
                         if key in self.rapdb.keys():
                             self.result[key].setdefault("rapdb", self.rapdb[key]["rapdb"])
-                    elif db == "gramene" or db == "ic4r":
+                    elif db == "gramene" or db == "ic4r" or db=="embl_ebi":
                         for ident in value["raprepName"]:
                             list_ids.append([ident])
                             list_dbs.append(db)
@@ -489,6 +528,12 @@ class MultiQuery():
                                 list_ids.append(["", loc])
                                 list_dbs.append(db)
                                 list_key.append(key)
+                    elif db=="gwas_atlas":
+                        for ident in value["raprepName"]:
+                            if ident in self.gwas_atlas.keys():
+                                list_ids.append([self.gwas_atlas[ident]])
+                                list_dbs.append(db)
+                                list_key.append(key)
             if multi_processing == True and multi_threading == False:
                 try:
                     p = Pool(processes=number_process)
@@ -510,7 +555,7 @@ class MultiQuery():
                     p.shutdown()
         return self.result
 
-    def query_multi_threading(self, list_key, list_dbs, list_ids, number_threading=4):
+    def query_multi_threading(self, list_key, list_dbs, list_ids, number_threading = 2):
         """
         Query function when using both of multi_processing and multi_threading
 
@@ -544,7 +589,7 @@ class MultiQuery():
         :param number_process: (int) number of process or number of threading
         :param multi_processing: (bool) if True use multi_processing
         :param multi_threading: (bool) if True use multi_threading
-        :param dbs: list databases (support 7 available databases)
+        :param dbs: list databases (support 10 available databases)
 
         :return: a dictionary, format: gene:{database: attribute}
         """
@@ -563,7 +608,7 @@ class MultiQuery():
         # Check support of database
         support_db = ["oryzabase", "gramene", "funricegene_genekeywords",
                       "funricegene_faminfo", "msu", "rapdb", "ic4r",
-                      "funricegene_geneinfo"]
+                      "funricegene_geneinfo","embl_ebi","gwas_atlas"]
         if dbs == 'all':
             name_db = support_db
         else:
@@ -589,7 +634,7 @@ class MultiQuery():
                     elif db == "rapdb":
                         if key in self.rapdb.keys():
                             self.result[key].setdefault("rapdb", self.rapdb[key]["rapdb"])
-                    elif db == "gramene" or db == "ic4r":
+                    elif db == "gramene" or db == "ic4r" or db == "embl_ebi":
                         for ident in value["raprepName"]:
                             tmp = self.query(key, db, [ident])
                             if tmp != None:
@@ -614,6 +659,12 @@ class MultiQuery():
                         else:
                             for loc in value["msu7Name"]:
                                 tmp = self.query(key, db, ["", loc])
+                                if tmp != None:
+                                    self.result[tmp[0]].setdefault(tmp[1], tmp[2])
+                    elif db == "gwas_atlas":
+                        for ident in value["raprepName"]:
+                            if ident in self.gwas_atlas.keys():
+                                tmp = self.query(key, db, [self.gwas_atlas[ident]])
                                 if tmp != None:
                                     self.result[tmp[0]].setdefault(tmp[1], tmp[2])
         # Multi-processing and Multi-threading
@@ -643,7 +694,7 @@ class MultiQuery():
                         elif db == "rapdb":
                             if key in self.rapdb.keys():
                                 self.result[key].setdefault("rapdb", self.rapdb[key]["rapdb"])
-                        elif db == "gramene" or db == "ic4r":
+                        elif db == "gramene" or db == "ic4r" or db=="embl_ebi":
                             for ident in value["raprepName"]:
                                 list_ids.append([ident])
                                 list_dbs.append(db)
@@ -668,6 +719,12 @@ class MultiQuery():
                             else:
                                 for loc in value["msu7Name"]:
                                     list_ids.append(["",loc])
+                                    list_dbs.append(db)
+                                    list_key.append(key)
+                        elif db == "gwas_atlas":
+                            for ident in value["raprepName"]:
+                                if ident in self.gwas_atlas.keys():
+                                    list_ids.append([self.gwas_atlas[ident]])
                                     list_dbs.append(db)
                                     list_key.append(key)
                     count_gene += 1
@@ -702,7 +759,7 @@ class MultiQuery():
                     elif db == "rapdb":
                         if key in self.rapdb.keys():
                             self.result[key].setdefault("rapdb", self.rapdb[key]["rapdb"])
-                    elif db == "gramene" or db == "ic4r":
+                    elif db == "gramene" or db == "ic4r" or db=="embl_ebi":
                         for ident in value["raprepName"]:
                             list_ids.append([ident])
                             list_dbs.append(db)
@@ -729,6 +786,13 @@ class MultiQuery():
                                 list_ids.append(["", loc])
                                 list_dbs.append(db)
                                 list_key.append(key)
+                    elif db == "gwas_atlas":
+                        for ident in value["raprepName"]:
+                            if ident in self.gwas_atlas.keys():
+                                list_ids.append([self.gwas_atlas[ident]])
+                                list_dbs.append(db)
+                                list_key.append(key)
+
             if multi_processing == True and multi_threading == False:
                 try:
                     p = Pool(processes=number_process)

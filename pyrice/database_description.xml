@@ -75,13 +75,6 @@
             <header type="">Location</header>
             <header type="">Description</header>
             <header type="">Box Plot</header>
-           <!--  <header type="">Project ID</header>
-            <header type="">Experiment ID</header>
-            <header type="">Experiment name</header>
-            <header type="">Variety</header>
-            <header type="">Development stage</header>
-            <header type="">Tissue</header>
-            <header type="">Expression value</header> -->
         </headers>
         <fields>
             <field op="=">gene</field>
@@ -105,12 +98,38 @@
             <!--<header type="">RAP ID</header>-->
             <!--<header type="">Mutant Image</header> -->
         </headers>
-         <fields>
+        <fields>
             <field op="=">name</field>
         </fields>
-        <data_struct indicator="table" identifier="" identification_string="" line_separator="tr" cell_separator="td"/>
+        <data_struct indicator="table" identifier="class" identification_string="" line_separator="tr" cell_separator="td"/>
         <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
     </database>
+
+    <database dbname="embl_ebi" type="javascript" method="GET">
+        <link stern="https://www.ebi.ac.uk/gxa/genes/" aft="#baseline"/>
+        <div class="dropdown btn-group btn-group-sm"></div>
+        <fields>
+            <field op=""></field>
+        </fields>
+    </database>
+
+    <!--For download and update dicitonary: {id gene : id number}-->
+    <!--<database dbname="gwas_atlas" type="javascript" method="GET">-->
+        <!--<link stern="https://bigd.big.ac.cn/gwas/search" aft=""/>-->
+        <!--<input type="text" id="search-param" name="searchParam"></input>-->
+        <!--<fields>-->
+            <!--<field op=""></field>-->
+        <!--</fields>-->
+    <!--</database>-->
+
+    <database dbname="gwas_atlas" type="javascript" method="GET">
+        <link stern="https://bigd.big.ac.cn/gwas/gene/getGeneAssociation?" aft=""/>
+        <button class="btn btn-default btn-undefined dropdown-toggle" title="Export data"></button>
+        <fields>
+            <field op="=">param</field>
+        </fields>
+    </database>
+
 
     <database dbname="plntfdb" type="text/html" method="GET">
         <link stern="http://plntfdb.bio.uni-potsdam.de/v3.0/get_id.php?" aft=""/>
@@ -165,7 +184,7 @@
         </fields>
     </database>
     <database dbname="snpseek" type="text/JSON" method="GET" normalize="false">
-        <link stern="http://snp-seek.irri.org/ws/genomics/gene/osnippo/" aft=""/>
+        <link stern="https://snp-seek.irri.org/ws/genomics/gene/osnippo/" aft=""/>
         <fields>
             <field></field>
             <field op="=">start</field>
@@ -174,7 +193,8 @@
         </fields>
         <data_struct indicator="div" identifier="id" identification_string="subcontent" line_separator="tr" cell_separator="td"/>
     </database>
-    <database dbname="msu" type="text/html" method="GET">
+    <!--cell_separator="b"-->
+     <database dbname="msu" type="text/html" method="GET">
         <link stern="http://rice.plantbiology.msu.edu/cgi-bin/sequence_display.cgi?" aft=""/>
         <headers>
             <header type="">Genomic Sequence</header>
