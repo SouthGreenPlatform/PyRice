@@ -16,7 +16,7 @@
     
 - Now there are 2 versions available:
     
-    - Version 0.1.6: Addition of crawling JavaScript data with Selenium.
+    - Version 0.1.7: Addition of crawling JavaScript data with Selenium.
         * If you want to use Selenium, please follow these steps:
             + Please check carefully the current version of Chrome on your computer before downloading
             + Download the [Chrome driver](https://chromedriver.chromium.org/downloads).

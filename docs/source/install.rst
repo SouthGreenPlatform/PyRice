@@ -11,12 +11,12 @@ Install PyRice package (the newest version) with :command:`pip`::
 
 To choose older version of Pyrice package using :command:`pip`::
 
-    $ pip install pyrice=0.1.5
+    $ pip install pyrice==0.1.5
 
 
 Now there are 2 versions available:
 
-    - Version 0.1.6: Addition of crawling JavaScript data with Selenium.
+    - Version 0.1.7: Addition of crawling JavaScript data with Selenium.
 
         - If you want to use Selenium, please follow these steps
 
