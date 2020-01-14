@@ -19,6 +19,8 @@ parser.add_argument("--multi_threading",action='store_true', default=False)
 parser.add_argument("--number_gene",type = float)
 args = parser.parse_args()
 
+utils.chrome_path = "/Users/mac/Downloads/chromedriver"
+
 if __name__ == "__main__":
     # Search gene and query loc
     # query = MultiQuery()
@@ -28,29 +30,27 @@ if __name__ == "__main__":
 
 
     # Query with chromosome
-    # query = MultiQuery()
-    # result = query.query_by_chromosome(chro="chr01", start_pos="100000",
-    #                      end_pos="150000", number_process = 2, multi_processing=False, multi_threading=False,
-    #                      dbs='all')
-    # query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
-    # print("Output database:", result)
+    query = MultiQuery()
+    result = query.query_by_chromosome(chro="chr01", start_pos="100000",
+                         end_pos="150000", number_process = 2, multi_processing=False, multi_threading=False,
+                         dbs='all')
+    query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
+    print("Output database:", result)
 
 
     # # Query with ids, locs and irics
-
-    utils.chrome_path = "/Users/mac/Downloads/chromedriver"
-    query = MultiQuery()
-    result = query.query_by_ids(ids=["Os08g0164400", "Os07g0586200"],
-                             locs=["LOC_Os10g01006", "LOC_Os07g39750"],
-                             irics=["OsNippo01g010050", "OsNippo01g010300"], number_process = 2,
-                             multi_processing=False, multi_threading=False, dbs="all")
+    # query = MultiQuery()
+    # result = query.query_by_ids(ids=["Os08g0164400", "Os07g0586200"],
+    #                          locs=["LOC_Os10g01006", "LOC_Os07g39750"],
+    #                          irics=["OsNippo01g010050", "OsNippo01g010300"], number_process = 2,
+    #                          multi_processing=False, multi_threading=False, dbs="all")
     # query.save(result,save_path = "./result/",format=["csv","html","json","pkl"],hyper_link=False)
-    print("Output database:",result)
+    # print("Output database:",result)
 
     # Query with new database
     # query = MultiQuery()
-    # result = query.query_new_database(atts=['TRAES3BF001000010CFD'], number_process= 4,
-    #                     multi_processing=True,multi_threading=True,dbs=['urgi'])
+    # result = query.query_new_database(atts=['AT4G32150'], number_process= 4,
+    #                     multi_processing=True,multi_threading=True,dbs=['planteome'])
     # query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
     # print("Output database:",result)
 

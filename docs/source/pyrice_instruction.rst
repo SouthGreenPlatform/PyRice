@@ -75,12 +75,12 @@ This function returns an :py:class:`dictionary`. ::
 			'Description': 'RabGAP/TBC domain containing protein.',
 				'Oryzabase Gene Name Synonym(s)': 'Molecular Function: Rab GTPase activator activity (GO:0005097)',
 				...},
-			'gramene': {
-				'_id': 'Os01g0100100',
-				'name': 'Os01g0100100',
-				'biotype': 'protein_coding',
-				...},
+		'gramene': {
+			'_id': 'Os01g0100100',
+			'name': 'Os01g0100100',
+			'biotype': 'protein_coding',
 			...},
+		...},
 	'OsNippo01g010150': {
 		'rapdb': {...},
 		'gramene': {...},
@@ -112,16 +112,16 @@ This function returns a :py:class:`dictionary` where the key is iric_name::
 	>>> print("Output database:",result)
 	Output database:
 	{'OsNippo01g010050': {
-			'rapdb': {
-				'Locus_ID': 'Os01g0100100',
-				'Description': 'RabGAP/TBC domain containing protein.',
-				'Position': '',
-				...},
-			'ic4r': {
-				'Anther_Normal': {'expression_value': '0.699962'},
-				'Anther_WT': {'expression_value': '13.9268'},
-				...},
+		'rapdb': {
+			'Locus_ID': 'Os01g0100100',
+			'Description': 'RabGAP/TBC domain containing protein.',
+			'Position': '',
 			...},
+		'ic4r': {
+			'Anther_Normal': {'expression_value': '0.699962'},
+			'Anther_WT': {'expression_value': '13.9268'},
+			...},
+		...},
 	'OsNippo01g010300': {
 		'rapdb': {...},
 		'ic4r': {...},
@@ -142,21 +142,23 @@ PyRice package supports query on new databases by adding its description manuall
 	>>> from pyrice.multi_query import MultiQuery
 
 	>>> query = MultiQuery()
-	>>> result = query.query_new_database(atts=['TRAES3BF001000010CFD'], number_process= 4,
-	                                      multi_processing=True,multi_threading=True,dbs=['urgi'])
+	>>> result = query.query_new_database(atts=['AT4G32150'], number_process= 4,
+	                                      multi_processing=True,multi_threading=True,dbs=['planteome'])
 
 
 This function returns a :py:class:`dictionary`.::
 
 	>>> print("Output database:",result)
 	Output database:
-	{'TRAES3BF001000010CFD':
-		{'urgi':{
-			'recordsTotal': 1177800,
-			'recordsFiltered': 1177800,
-			'draw': None,
-			...}
-		}
+	{'AT4G32150': {
+		'planteome': {
+			'service': '/api/search/annotation',
+			'status': 'success.',
+			'arguments': '{}',
+			'comments': ['Results found for: annotation; queries: ; filters: '],
+			'data': [{...}]
+			...},
+	    ...}
 	}
 
 To save the result, package uses the :py:func:`~pyrice.multi_query.MultiQuery.save` function in the :py:class:`~pyrice.multi_query.MultiQuery` with different types of file html, pkl, json, csv.::

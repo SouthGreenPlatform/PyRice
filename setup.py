@@ -5,7 +5,7 @@ with open('README.md','r') as fh:
 
 setup(
     name = 'pyrice',
-    version = '0.1.6',
+    version = '0.1.5.1',
     description = 'PyRice: a Python package for functional analysis of rice genes',
     py_modules =['multi_query','utils','build_dictionary'],
     license = 'MIT',

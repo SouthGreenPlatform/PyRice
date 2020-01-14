@@ -58,10 +58,12 @@
         </fields>
     </database>
 
-    <database dbname="urgi" type="text/JSON" method="GET" normalize="false">
-        <link stern="https://urgi.versailles.inra.fr/wheatis-srv/results/facet?" aft="&amp;start=1&amp;length=10"/>
+    http://browser.planteome.org/api/search/annotation?bioentity=AT4G32150
+
+    <database dbname="planteome" type="text/JSON" method="GET" normalize="false">
+        <link stern="http://browser.planteome.org/api/search/annotation?" aft=""></link>
         <fields>
-            <field op="=">term</field>
+            <field op="=">bioentity</field>
         </fields>
     </database>
 

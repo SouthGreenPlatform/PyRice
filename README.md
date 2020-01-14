@@ -137,21 +137,24 @@ Output database:
 from pyrice.multi_query import MultiQuery
     
 query = MultiQuery()
-result = query.query_new_database(atts=['TRAES3BF001000010CFD'], number_process= 4,
-                                  multi_processing=True,multi_threading=True,dbs=['urgi'])
+result = query.query_new_database(atts=['AT4G32150'], number_process= 4,
+                                  multi_processing=True,multi_threading=True,dbs=['planteome'])
 query.save(result, save_path="./result/",
            format=["csv", "html", "json", "pkl"], hyper_link=False) 
 print("Output database:",result)                          
 ```
 ```bash
 Output database:
-{'TRAES3BF001000010CFD':
-    {'urgi':{
-        'recordsTotal': 1177800,
-        'recordsFiltered': 1177800,
-        'draw': None,
-        ...}
-    }
+{'AT4G32150':
+    {'planteome':{
+        'service': '/api/search/annotation', 
+        'status': 'success',
+        'arguments': {},
+        'comments': ['Results found for: annotation; queries: ; filters: '],
+        'data': [{...}]
+        ...
+   }
+   ...
 }
 ```
 ### Example of Build Dictinary Module
@@ -201,7 +204,7 @@ print(pysqldf(sql))
 * Funricegene
 * MSU
 * EMBL-EBI
-* GWAS_ATLAS
+* GWAS-ATLAS
 
 ## List of exception
 
