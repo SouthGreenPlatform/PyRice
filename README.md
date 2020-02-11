@@ -205,6 +205,7 @@ print(pysqldf(sql))
 * MSU
 * EMBL-EBI Expression Atlas 
 * GWAS-ATLAS
+* PlnTFDB
 * TAIR
 
 ## List of exception
