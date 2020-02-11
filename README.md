@@ -203,8 +203,9 @@ print(pysqldf(sql))
 * SNP-Seek
 * Funricegene
 * MSU
-* EMBL-EBI
+* EMBL-EBI Expression Atlas 
 * GWAS-ATLAS
+* TAIR
 
 ## List of exception
 
