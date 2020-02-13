@@ -94,7 +94,7 @@ To save the result, package uses the :py:func:`~pyrice.multi_query.MultiQuery.sa
 	               format=["csv", "html", "json", "pkl"], hyper_link=False)
 
 Search informations gene by IDs
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 PyRice package supports searching gene information follow three identifications of gene: IDs on Oryzabase, locus on MSU and iric_name on SNP-SEEK.
 The :py:func:`~pyrice.multi_query.MultiQuery.query_by_ids` function in the :py:class:`~pyrice.multi_query.MultiQuery` class is used following::
@@ -211,7 +211,7 @@ Next, follow the code below to run SQL query::
 			The variable name is same with the table name in SQL query.
 
 Structure of file database wrapper
--------------------------------------
+----------------------------------
 
 PyRice package contains a file which includes all database wrapper (database_description.xml) to manage all information of databases::
 

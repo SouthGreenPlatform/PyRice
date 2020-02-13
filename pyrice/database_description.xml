@@ -20,6 +20,7 @@
         <data_struct indicator="table" identifier="class" identification_string="table_summery_list table_nowrapTh max_width_element" line_separator="tr" cell_separator="td"/>
         <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
     </database>
+
     <database dbname="rnd" type="text/html" method="GET">
         <link stern="https://bis.zju.edu.cn/ricenetdb/genenetwork.php?" aft=""/>
         <headers>
@@ -32,6 +33,7 @@
         <data_struct indicator="div" identifier="align" identification_string="center" line_separator="tr" cell_separator="td"/>
         <prettify replaceBy=' '>\n>LOC_.*\n|\n|\r|\t|\xa0</prettify>
     </database>
+
     <database dbname="rapdb" type="text/html" method="GET">
         <link stern="https://rapdb.dna.affrc.go.jp/tools/search/run?type=locus&amp;" aft="&amp;submit=Search&amp;id=on&amp;size=10"/>
         <headers>
@@ -51,14 +53,13 @@
         <data_struct indicator="table" identifier="id" identification_string="result_table" line_separator="tr" cell_separator="td"/>
         <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
     </database>
+
     <database dbname="gramene" type="text/JSON" method="GET" normalize="false">
         <link stern="http://data.gramene.org/v60/genes?" aft=""/>
         <fields>
             <field op="=">_id</field>
         </fields>
     </database>
-
-    http://browser.planteome.org/api/search/annotation?bioentity=AT4G32150
 
     <database dbname="planteome" type="text/JSON" method="GET" normalize="false">
         <link stern="http://browser.planteome.org/api/search/annotation?" aft=""></link>
@@ -132,7 +133,6 @@
         </fields>
     </database>
 
-
     <database dbname="plntfdb" type="text/html" method="GET">
         <link stern="http://plntfdb.bio.uni-potsdam.de/v3.0/get_id.php?" aft=""/>
         <headers>
@@ -146,6 +146,7 @@
         <data_struct indicator="div" identifier="id" identification_string="subcontent" line_separator="tr" cell_separator="td"/>
         <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
     </database>
+
     <database dbname="funricegene_genekeywords" type="text/csv" method="GET" encoding="Windows-1252" deli="&#009;">
         <link stern="https://funricegenes.github.io/geneKeyword.table.txt" aft=""/>
         <headers>
@@ -160,6 +161,7 @@
             <field>MSU</field>
         </fields>
     </database>
+
     <database dbname="funricegene_faminfo" type="text/csv" method="GET" encoding="Windows-1252" deli="&#009;">
         <link stern="https://funricegenes.github.io/famInfo.table.txt" aft=""/>
         <headers>
@@ -173,6 +175,7 @@
             <field>MSU</field>
         </fields>
     </database>
+
     <database dbname="funricegene_geneinfo" type="text/csv" method="GET" encoding="Windows-1252" deli="&#009;">
         <link stern="https://funricegenes.github.io/geneInfo.table.txt" aft=""/>
         <headers>
@@ -195,6 +198,7 @@
         </fields>
         <data_struct indicator="div" identifier="id" identification_string="subcontent" line_separator="tr" cell_separator="td"/>
     </database>
+
     <!--cell_separator="b"-->
      <database dbname="msu" type="text/html" method="GET">
         <link stern="http://rice.plantbiology.msu.edu/cgi-bin/sequence_display.cgi?" aft=""/>
@@ -212,6 +216,7 @@
     <database dbname="planttfdb" type="text/csv" method="downloadable">
         <link stern="http://planttfdb.cbi.pku.edu.cn/download.php" aft=""/>
     </database>
+
     <database dbname="uniprot_getid" type="text/html" method="GET">
         <link stern="http://www.uniprot.org/uniprot/?query=" aft=""/>
         <headers>
@@ -231,6 +236,7 @@
         <data_struct indicator="tbody" identifier="" identification_string="" line_separator="tr" cell_separator="td"/>
         <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
     </database>
+
     <database dbname="uniprot_getprotein" type="text/html" method="GET">
         <link stern="http://www.uniprot.org/uniprot/" aft=".rdf"/>
         <headers>
@@ -242,6 +248,7 @@
         <data_struct indicator="tbody" identifier="" identification_string="" line_separator="tr" cell_separator="td"/>
         <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
     </database>
+
     <database dbname="kegg" type="text/html" method="GET">
         <link stern="http://rest.kegg.jp/" aft=""/>
         <headers>
@@ -253,6 +260,7 @@
         <data_struct indicator="html" identifier="" line_separator="body" cell_separator="p"/>
         <prettify replaceBy='\s'>((^(?!DEFINITION.*).*)(^(?!DESCRIPTION.*).*))|\n|(DEFINITION *)|(DESCRIPTION *)</prettify>
     </database>
+
     <database dbname="eggnog_og" type="text/JSON" method="GET" normalize="true">
         <link stern="http://eggnogapi.embl.de/nog_data/json/" aft=""/>
         <headers>
@@ -262,6 +270,7 @@
             <field lowercase="true" op="/">go_terms</field>
         </fields>
     </database>
+
     <database dbname="pfam_clan" type="text/csv" method="GET" encoding="Windows-1252" deli="&#009;" location="local">
         <link stern="C:\Users\XPS 15-9550\Git\rRice_legacy\inst\python\data\pfam\Pfam-A.clans.tsv" aft=""/>
         <headers>
@@ -276,6 +285,7 @@
             <field>Pfam_clan</field>
         </fields>
     </database>
+
     <database dbname="kegg_ko" type="text/html" method="GET">
         <link stern="http://www.genome.jp/dbget-bin/www_bget?" aft=""/>
         <headers>

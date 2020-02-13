@@ -194,17 +194,22 @@ print(pysqldf(sql))
 ```
 **The variable name must be same with the table name in SQL query.**
 
-## List of supported database
+## List of supported databases
 
-* Oryzabase
-* RapDB
-* Gramene
-* IC4R
-* SNP-Seek
-* Funricegene
-* MSU
-* EMBL-EBI
-* GWAS-ATLAS
+Database_name: keywords
+
+* [Oryzabase](https://shigen.nig.ac.jp/rice/oryzabase/) : oryzabase
+* [RapDB](https://rapdb.dna.affrc.go.jp) : rapdb
+* [Gramene](http://www.gramene.org) : gramene
+* [IC4R](http://expression.ic4r.org) : ic4r
+* [SNP-Seek](https://snp-seek.irri.org) : snpseek
+* [Funricegene](https://funricegenes.github.io) : funricegene_genekeywords, funricegene_faminfo, funricegene_geneinfo
+* [MSU](http://rice.plantbiology.msu.edu) : msu
+* [EMBL-EBI Expression Atlas](https://www.ebi.ac.uk/gxa/home) : embl_ebi
+* [GWAS-ATLAS](https://bigd.big.ac.cn/gwas/#) : gwas_atlas
+* [Planteome](http://planteome.org) : planteome
+
+**Keywords are value of arguments in query module
 
 ## List of exception
 

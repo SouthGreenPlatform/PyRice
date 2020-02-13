@@ -12,6 +12,7 @@ Welcome to PyRice's documentation!
 
    install.rst
    pyrice_instruction.rst
+   pyrice_database.rst
    pyrice_result.rst
    pyrice_module.rst
 
