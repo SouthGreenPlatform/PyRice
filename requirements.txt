@@ -6,7 +6,7 @@ requests==2.19.1
 pandas==0.23.4
 json2table==1.1.5
 beautifulsoup4==4.6.3
-urllib3==1.23
+urllib3==1.24.2
 selenium==3.141.0
 pandasql==0.7.3
 lxml==4.2.5
