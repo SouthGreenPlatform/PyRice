@@ -209,7 +209,7 @@ Database_name: keywords
 * [GWAS-ATLAS](https://bigd.big.ac.cn/gwas/#) : gwas_atlas
 * [Planteome](http://planteome.org) : planteome
 
-**Keywords are value of arguments in query module
+**Keywords are value of arguments in query module.**
 
 ## List of exception
 
