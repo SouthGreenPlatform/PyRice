@@ -289,6 +289,7 @@ class MultiQuery():
                     my_db = data_folder + "db" + '.json'
                     with open(my_db, 'w') as f:
                         json.dump(test,f)
+                    f.close()
             # output gene/iricname.txt
             test = copy.deepcopy(result)
             # filter allow attributes
@@ -321,15 +322,21 @@ class MultiQuery():
                                 for att in homologous_genes:
                                     v["homology"]["homologous_genes"].pop(att, None)
             for iricname in test.keys():
-                my_gene = gene_folder + iricname + '.html'
+                my_gene = gene_folder + iricname
                 build_direction = "LEFT_TO_RIGHT"
                 table_attributes = {"style": "width:100%","class" : "table table-striped","border" : 1 }
                 html = json2table.convert(test[iricname],
                                           build_direction=build_direction,
                                           table_attributes=table_attributes)
-                with open(my_gene, "w") as f:
+                #html formart
+                with open(my_gene+'.html', "w") as f:
                     f.write(html)
                 f.close()
+                #json formart
+                with open(my_gene+'.json', "w") as f:
+                    json.dump(test[iricname], f)
+                f.close()
+
 
     def query_by_chromosome(self, chro, start_pos, end_pos, number_process = cpu_count()-1, multi_processing = False,
                    multi_threading = True, dbs='all'):

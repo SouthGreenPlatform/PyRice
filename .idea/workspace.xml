@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b41311d-013e-4b0c-ab50-7cb067cb2544" name="Default Changelist" comment="" />
+    <list default="true" id="2b41311d-013e-4b0c-ab50-7cb067cb2544" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/images/html_detail.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/images/html_detail.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/install.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/install.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/pyrice_instruction.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/pyrice_instruction.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyrice/build_dictionary.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyrice/build_dictionary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyrice/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyrice/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyrice/multi_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyrice/multi_query.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyrice/support/id_dict.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyrice/support/iric_dict.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyrice/support/loc_dict.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyrice/support/oryzabase.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyrice/support/rapdb.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,13 +28,14 @@
     <session id="220242955">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="17" />
-          <entry key="project.open.time.10" value="1" />
+          <entry key="project.closed" value="24" />
+          <entry key="project.open.time.10" value="3" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="2" />
-          <entry key="project.open.time.17" value="1" />
+          <entry key="project.open.time.17" value="2" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.21" value="1" />
@@ -28,22 +45,24 @@
           <entry key="project.open.time.43" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="18" />
+          <entry key="project.open.time.9" value="3" />
+          <entry key="project.opened" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="KN16HP" value="1" />
-          <entry key="csv" value="1" />
+          <entry key="Makefile" value="1" />
+          <entry key="csv" value="2" />
+          <entry key="html" value="1" />
           <entry key="in" value="3" />
           <entry key="json" value="1" />
           <entry key="log" value="1" />
           <entry key="md" value="6" />
           <entry key="pkl" value="2" />
-          <entry key="png" value="3" />
-          <entry key="py" value="33" />
-          <entry key="rst" value="33" />
+          <entry key="png" value="5" />
+          <entry key="py" value="37" />
+          <entry key="rst" value="36" />
           <entry key="txt" value="4" />
           <entry key="xml" value="5" />
           <entry key="yml" value="1" />
@@ -51,12 +70,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Image" value="3" />
+          <entry key="HTML" value="1" />
+          <entry key="Image" value="5" />
           <entry key="JSON" value="1" />
           <entry key="Markdown" value="6" />
-          <entry key="PLAIN_TEXT" value="12" />
-          <entry key="Python" value="33" />
-          <entry key="ReST" value="33" />
+          <entry key="PLAIN_TEXT" value="14" />
+          <entry key="Python" value="37" />
+          <entry key="ReST" value="36" />
           <entry key="XML" value="5" />
           <entry key="YAML" value="1" />
         </counts>
@@ -64,19 +84,19 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="in" value="14" />
-          <entry key="md" value="842" />
-          <entry key="py" value="1184" />
-          <entry key="rst" value="4919" />
+          <entry key="md" value="1021" />
+          <entry key="py" value="1276" />
+          <entry key="rst" value="4923" />
           <entry key="txt" value="75" />
           <entry key="xml" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Markdown" value="824" />
+          <entry key="Markdown" value="1003" />
           <entry key="PLAIN_TEXT" value="89" />
-          <entry key="Python" value="1233" />
-          <entry key="ReST" value="4888" />
+          <entry key="Python" value="1325" />
+          <entry key="ReST" value="4892" />
           <entry key="XML" value="47" />
         </counts>
       </usages-collector>
@@ -84,15 +104,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pyrice/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
@@ -102,12 +113,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="80">
-                <caret line="218" selection-start-line="218" selection-end-line="218" />
+              <first_editor relative-caret-position="235">
+                <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
               </first_editor>
               <second_editor />
             </state>
@@ -115,13 +126,55 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/source/pyrice_module.rst">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/Makefile">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/install.rst">
           <provider selected="true" editor-type-id="restructured-text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/source/pyrice_result.rst">
-          <provider selected="true" editor-type-id="restructured-text-editor" />
+        <entry file="file://$PROJECT_DIR$/pyrice/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="535">
+              <caret line="36" column="11" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
+              <folding>
+                <element signature="e#24#65#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pyrice/build_dictionary.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1557">
+              <caret line="144" column="26" selection-start-line="144" selection-start-column="4" selection-end-line="144" selection-end-column="26" />
+              <folding>
+                <element signature="e#25#60#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -132,8 +185,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyrice/multi_query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5673">
-              <caret line="438" column="61" selection-start-line="438" selection-start-column="61" selection-end-line="438" selection-end-column="61" />
+            <state relative-caret-position="4785">
+              <caret line="332" column="33" selection-start-line="332" selection-start-column="33" selection-end-line="332" selection-end-column="33" />
               <folding>
                 <element signature="e#24#67#0" expanded="true" />
               </folding>
@@ -152,11 +205,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>OsNippo01g010150</find>
-      <find>ara</find>
-      <find>HTML</find>
-      <find>oryzabase</find>
-      <find>return</find>
       <find>snp</find>
       <find>msu</find>
       <find>gwas_atlas</find>
@@ -182,6 +230,11 @@
       <find>&lt;</find>
       <find>note</find>
       <find>)</find>
+      <find>json</find>
+      <find>save</find>
+      <find>json.dump</find>
+      <find>update_gene_dictionary</find>
+      <find>update_</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -192,33 +245,33 @@
       <list>
         <option value="$PROJECT_DIR$/LICENSE.txt" />
         <option value="$PROJECT_DIR$/envs.yml" />
-        <option value="$PROJECT_DIR$/pyrice/build_dictionary.py" />
         <option value="$PROJECT_DIR$/docs/source/pyrice_tutorial.rst" />
         <option value="$PROJECT_DIR$/docs/source/pyrice_result.rst" />
         <option value="$PROJECT_DIR$/docs/source/pyrice_module.rst" />
         <option value="$PROJECT_DIR$/docs/source/pyrice.rst" />
         <option value="$PROJECT_DIR$/pyrice/utils.py" />
-        <option value="$PROJECT_DIR$/pyrice/multi_query.py" />
-        <option value="$PROJECT_DIR$/pyrice/main.py" />
         <option value="$PROJECT_DIR$/pyrice/support/download/demo.txt" />
         <option value="$PROJECT_DIR$/pyrice/support/download/log.txt" />
         <option value="$PROJECT_DIR$/MANIFEST.in" />
-        <option value="$PROJECT_DIR$/docs/source/conf.py" />
-        <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/pyrice/database_description.xml" />
-        <option value="$PROJECT_DIR$/docs/source/pyrice_instruction.rst" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/docs/source/index.rst" />
-        <option value="$PROJECT_DIR$/docs/source/install.rst" />
         <option value="$PROJECT_DIR$/docs/source/pyrice_database.rst" />
+        <option value="$PROJECT_DIR$/docs/source/pyrice_instruction.rst" />
+        <option value="$PROJECT_DIR$/pyrice/main.py" />
+        <option value="$PROJECT_DIR$/pyrice/multi_query.py" />
+        <option value="$PROJECT_DIR$/pyrice/build_dictionary.py" />
+        <option value="$PROJECT_DIR$/docs/source/install.rst" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/docs/source/conf.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="446" />
+    <option name="x" value="140" />
     <option name="y" value="23" />
-    <option name="width" value="1367" />
+    <option name="width" value="1280" />
     <option name="height" value="707" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -229,6 +282,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -252,11 +306,16 @@
               <item name="PyRice" type="462c0819:PsiDirectoryNode" />
               <item name="pyrice" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="PyRice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PyRice" type="462c0819:PsiDirectoryNode" />
+              <item name="pyrice" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -285,7 +344,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.build_dictionary">
+    <configuration name="build_dictionary" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PyRice" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyrice" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyrice/build_dictionary.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PyRice" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -307,8 +387,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.build_dictionary" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.build_dictionary" />
         <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
@@ -327,20 +412,21 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="446" y="23" width="1367" height="707" extended-state="0" />
+    <frame x="140" y="23" width="1280" height="707" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14635958" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30579826" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.41463414" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3398374" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.53170735" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.22276422" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -380,12 +466,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyrice/support/rapdb.pkl">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/images/html_detail.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/images/html.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/source/modules.rst" />
     <entry file="file://$PROJECT_DIR$/source/pyrice.rst" />
@@ -444,20 +524,6 @@
     <entry file="file://$PROJECT_DIR$/pyrice/support/download/download_history.log">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="137" column="52" selection-start-line="137" selection-start-column="32" selection-end-line="137" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyrice/build_dictionary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pyrice/database_description.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
@@ -465,22 +531,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyrice/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="52" column="84" selection-start-line="52" selection-start-column="75" selection-end-line="52" selection-end-column="84" />
-          <folding>
-            <element signature="e#24#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pyrice/utils.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -489,6 +541,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pyrice/result/gene/OsNippo01g011350.html" />
+    <entry file="file://$PROJECT_DIR$/docs/source/pyrice_database.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/pyrice_result.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyrice/multi_query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4785">
+          <caret line="332" column="33" selection-start-line="332" selection-start-column="33" selection-end-line="332" selection-end-column="33" />
+          <folding>
+            <element signature="e#24#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/result/data/db.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -496,41 +568,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
+    <entry file="file://$PROJECT_DIR$/pyrice/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="36" column="11" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
+          <folding>
+            <element signature="e#24#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/source/install.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/pyrice_result.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/source/pyrice_module.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/pyrice_instruction.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/pyrice_database.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyrice/multi_query.py">
+    <entry file="file://$PROJECT_DIR$/pyrice/build_dictionary.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5673">
-          <caret line="438" column="61" selection-start-line="438" selection-start-column="61" selection-end-line="438" selection-end-column="61" />
+        <state relative-caret-position="1557">
+          <caret line="144" column="26" selection-start-line="144" selection-start-column="4" selection-end-line="144" selection-end-column="26" />
           <folding>
-            <element signature="e#24#67#0" expanded="true" />
+            <element signature="e#25#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/pyrice_instruction.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="80">
-            <caret line="218" selection-start-line="218" selection-end-line="218" />
+          <first_editor relative-caret-position="235">
+            <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/images/html.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/images/html_detail.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/Makefile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
         </state>
       </provider>
     </entry>

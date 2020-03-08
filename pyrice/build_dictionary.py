@@ -11,9 +11,9 @@ import os
 import wget
 
 # parser = ArgumentParser("build_dictionary", conflict_handler='resolve')
-# parser.add_argument("--rapdb_url", type=str, default="https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2019-03-22.tsv.gz")
+# parser.add_argument("--rapdb_url", type=str, default="https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2019-12-17.tsv.gz")
 # parser.add_argument("--oryzabase_url",type=str, default="https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
-# args = parser.parse_args()
+# # args = parser.parse_args()
 
 dir_path = os.path.dirname(multi_query.__file__)
 
@@ -96,24 +96,16 @@ def update_local_database(rapdb_url, oryzabase_url):
     filter_data = []
     for d in data:
         filter_data.append(d.split("\t"))
-    c = 0
     oryzabase = dict()
+    filter_data[0][-1] = filter_data[0][-1][:-1]
     for d in filter_data:
         if len(d) > 10:
             if d[10] in id_dict.keys():
                 iric_name = id_dict[d[10]]
                 oryzabase.setdefault(iric_name, {"oryzabase": dict()})
-                oryzabase[iric_name]["oryzabase"].setdefault("CGSNL Gene Symbol", d[1])
-                oryzabase[iric_name]["oryzabase"].setdefault("Gene symbol synonym(s)", d[2])
-                oryzabase[iric_name]["oryzabase"].setdefault("CGSNL Gene Name", d[3])
-                oryzabase[iric_name]["oryzabase"].setdefault("Gene name synonym(s)", d[4])
-                oryzabase[iric_name]["oryzabase"].setdefault("Chr. No.", d[7])
-                oryzabase[iric_name]["oryzabase"].setdefault("Trait Class", d[9])
-                oryzabase[iric_name]["oryzabase"].setdefault("Gene Ontology", d[14])
-                oryzabase[iric_name]["oryzabase"].setdefault("Trait Ontology", d[15])
-                oryzabase[iric_name]["oryzabase"].setdefault("Plant Ontology", d[16])
-                oryzabase[iric_name]["oryzabase"].setdefault("RAP ID", d[10])
-                c += 1
+                for i in range(len(filter_data[0])):
+                    if d[i] != '\n' and len(d[i]) > 1:
+                        oryzabase[iric_name]["oryzabase"].setdefault(filter_data[0][i], d[i])
     with open(os.path.join(dir_path,"support/oryzabase.pkl"), "wb") as f:
         pickle.dump(oryzabase, f)
     f.close()
@@ -132,26 +124,23 @@ def update_local_database(rapdb_url, oryzabase_url):
     filter_data = []
     for d in data:
         filter_data.append(d.split("\t"))
-    c = 0
     rapdb = dict()
+    filter_data[0][-1] = filter_data[0][-1][:-1]
     for d in filter_data:
-        if len(d) > 10:
+        if len(d) > 16:
             if d[1] in id_dict.keys():
                 iric_name = id_dict[d[1]]
                 rapdb.setdefault(iric_name, {"rapdb": dict()})
-                rapdb[iric_name]["rapdb"].setdefault("Locus_ID", d[1])
-                rapdb[iric_name]["rapdb"].setdefault("Description", d[2])
-                rapdb[iric_name]["rapdb"].setdefault("Position", d[3])
-                rapdb[iric_name]["rapdb"].setdefault("RAP-DB Gene Symbol Synonym(s)", d[4])
-                rapdb[iric_name]["rapdb"].setdefault("RAP-DB Gene Name Synonym(s)", d[5])
-                rapdb[iric_name]["rapdb"].setdefault("CGSNL Gene Symbol", d[6])
-                rapdb[iric_name]["rapdb"].setdefault("CGSNL Gene Name", d[7])
-                rapdb[iric_name]["rapdb"].setdefault("Oryzabase Gene Symbol Synonym(s)", d[8])
-                rapdb[iric_name]["rapdb"].setdefault("Oryzabase Gene Name Synonym(s)", d[9])
-            c += 1
+                for i in range(len(filter_data[0])):
+                    if d[i] != '\n' and len(d[i]) > 1:
+                        rapdb[iric_name]["rapdb"].setdefault(filter_data[0][i], d[i])
     with open(os.path.join(dir_path,"support/rapdb.pkl"), "wb") as f:
         pickle.dump(rapdb, f)
     f.close()
     os.remove(source_filepath)
     os.remove(dest_filepath)
     print('Build successfully Rapdb database')
+
+if __name__ == '__main__':
+    update_gene_dictionary()
+    update_local_database("https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2019-12-17.tsv.gz", "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")

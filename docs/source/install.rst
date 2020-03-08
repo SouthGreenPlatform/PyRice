@@ -14,9 +14,9 @@ To choose older version of Pyrice package using :command:`pip`::
     $ pip install pyrice==0.1.5
 
 
-Now there are 2 versions available:
+Now there are 1 versions available (should use the latest version):
 
-    - Version 0.1.7: Addition of crawling JavaScript data with Selenium.
+    - Version 0.1.8: Addition of crawling JavaScript data with Selenium.
 
         - If you want to use Selenium, please follow these steps
 
@@ -27,7 +27,8 @@ Now there are 2 versions available:
 
                 >>> from pyrice import utils
                 >>> utils.chrome_path = "the path of your Chrome driver"
-    - Version 0.1.5: Crawl data without Selenium.
+
+    - Version 0.1.5: Crawl data without Selenium (unsupported).
 
 Install via Github
 ------------------

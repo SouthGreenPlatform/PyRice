@@ -177,7 +177,7 @@ and :py:func:`~pyrice.build_dictionary.update_rapdb_oryzabase` function in the :
 	>>> from pyrice.build_dictionary import update_gene_dictionary, update_rapdb_oryzabase
 
 	>>> update_gene_dictionary()
-	>>> update_rapdb_oryzabase(rapdb_url, oryzabase_url)
+	>>> update_local_database(rapdb_url, oryzabase_url)
 
 Using the search function and query SQL
 ---------------------------------------

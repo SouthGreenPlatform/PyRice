@@ -14,9 +14,8 @@
     pip install pyrice
     ```
     
-- Now there are 2 versions available:
-    
-    - Version 0.1.7: Addition of crawling JavaScript data with Selenium.
+- Now there are 1 versions available (should use the latest version):
+    - Version 0.1.8: Addition of crawling JavaScript data with Selenium.
         * If you want to use Selenium, please follow these steps:
             + Please check carefully the current version of Chrome on your computer before downloading
             + Download the [Chrome driver](https://chromedriver.chromium.org/downloads).
@@ -25,7 +24,9 @@
                 from pyrice import utils
                 utils.chrome_path = "the path of your Chrome driver"
                 ```
-    - Version 0.1.5: Crawl data without Selenium.
+    - Version 0.1.5: Crawl data without Selenium (unsupported).
+    
+- To see demo of package: [Demo_PyRice.ipynb](./Demo_PyRice.ipynb)
     
 
  ## Instruction 
@@ -162,7 +163,7 @@ Output database:
 from pyrice.build_dictionary import update_gene_dictionary, update_rapdb_oryzabase
 
 update_gene_dictionary()
-update_rapdb_oryzabase(rapdb_url, oryzabase_url)
+update_local_database(rapdb_url, oryzabase_url)
 ```
 
 ### Example of Search Module

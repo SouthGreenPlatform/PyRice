@@ -32,7 +32,7 @@ if __name__ == "__main__":
     # Query with chromosome
     query = MultiQuery()
     result = query.query_by_chromosome(chro="chr01", start_pos="100000",
-                         end_pos="150000", number_process = 2, multi_processing=False, multi_threading=False,
+                         end_pos="150000", number_process = 2, multi_processing=True, multi_threading=False,
                          dbs='all')
     query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
     print("Output database:", result)
