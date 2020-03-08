@@ -26,7 +26,7 @@
                 ```
     - Version 0.1.5: Crawl data without Selenium (unsupported).
     
-- To see demo of package: [Demo_PyRice.ipynb](./Demo_PyRice.ipynb)
+- To see demo of package: [Demo_PyRice.ipynb](https://github.com/SouthGreenPlatform/PyRice/blob/master/Demo_PyRice.ipynb)
     
 
  ## Instruction 
