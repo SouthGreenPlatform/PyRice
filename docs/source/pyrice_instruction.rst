@@ -135,38 +135,6 @@ To save the result, package uses the :py:func:`~pyrice.multi_query.MultiQuery.sa
 	>>> query.save(result, save_path = "./result/",
 	               format=["csv", "html", "json", "pkl"], hyper_link=False)
 
-Search new attributes on new databases
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-PyRice package supports query on new databases by adding its description manually on file `database_description.xml`. Use the :py:func:`~pyrice.multi_query.MultiQuery.query_new_databse` function in the :py:class:`~pyrice.multi_query.MultiQuery` class::
-
-	>>> from pyrice.multi_query import MultiQuery
-
-	>>> query = MultiQuery()
-	>>> result = query.query_new_database(atts=['AT4G32150'], number_process= 4,
-	                                      multi_processing=True,multi_threading=True,dbs=['planteome'])
-
-
-This function returns a :py:class:`dictionary`.::
-
-	>>> print("Output database:",result)
-	Output database:
-	{'AT4G32150': {
-		'planteome': {
-			'service': '/api/search/annotation',
-			'status': 'success.',
-			'arguments': '{}',
-			'comments': ['Results found for: annotation; queries: ; filters: '],
-			'data': [{...}]
-			...},
-	    ...}
-	}
-
-To save the result, package uses the :py:func:`~pyrice.multi_query.MultiQuery.save` function in the :py:class:`~pyrice.multi_query.MultiQuery` with different types of file html, pkl, json, csv.::
-
-	>>> query.save(result, save_path="./result/",
-	               format=["csv", "html", "json", "pkl"], hyper_link=False)
-
-
 Using the build_dictionary module
 ---------------------------------
 
@@ -253,3 +221,71 @@ Example: here is a Oryzabase database::
 		<prettify>\n>LOC_.*\n|\n|\r|\t</prettify>
 	</database>
 
+Search new attributes on new databases
+--------------------------------------
+
+Add new database
+^^^^^^^^^^^^^^^^^^^
+PyRice package supports queries on new databases by adding its description manually on `database_description.xml`.
+With JSON format, here is SNP-SEEK database with API: https://snp-seek.irri.org/ws/genomics/gene/osnippo/chr01?start=1&end=15000&model=iric::
+
+    <database dbname="snpseek" type="text/JSON" method="GET" normalize="false">
+        <link stern="https://snp-seek.irri.org/ws/genomics/gene/osnippo/" aft=""/>
+        <fields>
+            <field></field>
+            <field op="=">start</field>
+            <field op="=">end</field>
+            <field op="=">model</field>
+        </fields>
+    </database>
+
+For more details:
+    - dbname : database name
+    - type : the result return by API
+    - method : GET/POST (usually GET)
+    - normalize : normalize name of database true/false (usually false)
+    - stern : URL of API
+    - op : paramaters (see on API above)
+
+For example, with an API from Planteome: http://browser.planteome.org/api/search/annotation?bioentity=AT4G32150::
+
+    <database dbname="planteome" type="text/JSON" method="GET" normalize="false">
+        <link stern="http://browser.planteome.org/api/search/annotation?" aft=""></link>
+        <fields>
+            <field op="=">bioentity</field>
+        </fields>
+    </database>
+
+Use new query funtion
+^^^^^^^^^^^^^^^^^^^^^
+Use the :py:func:`~pyrice.multi_query.MultiQuery.query_new_databse` function in the :py:class:`~pyrice.multi_query.MultiQuery` class::
+
+	>>> from pyrice.multi_query import MultiQuery
+
+	>>> query = MultiQuery()
+	>>> result = query.query_new_database(atts=['AT4G32150'], number_process= 4,
+	                                      multi_processing=True,multi_threading=True,dbs=['planteome'])
+
+
+This function returns a :py:class:`dictionary`.::
+
+	>>> print("Output database:",result)
+	Output database:
+	{'AT4G32150': {
+		'planteome': {
+			'service': '/api/search/annotation',
+			'status': 'success.',
+			'arguments': '{}',
+			'comments': ['Results found for: annotation; queries: ; filters: '],
+			'data': [{...}]
+			...},
+	    ...}
+	}
+
+To save the result, package uses the :py:func:`~pyrice.multi_query.MultiQuery.save` function in the :py:class:`~pyrice.multi_query.MultiQuery` with different types of file html, pkl, json, csv.::
+
+	>>> query.save(result, save_path="./result/",
+	               format=["csv", "html", "json", "pkl"], hyper_link=False)
+
+.. note::   With APIs return results with HTML and Javascript format, it might have some problems due to the difference of GUI (Javascript) or tag (HTML).
+            So, we are working to simplize the package on those two formats to make it easier for updating new databases.
