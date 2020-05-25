@@ -328,14 +328,18 @@ class MultiQuery():
                 html = json2table.convert(test[iricname],
                                           build_direction=build_direction,
                                           table_attributes=table_attributes)
-                #html formart
-                with open(my_gene+'.html', "w") as f:
-                    f.write(html)
-                f.close()
-                #json formart
-                with open(my_gene+'.json', "w") as f:
-                    json.dump(test[iricname], f)
-                f.close()
+                #Check if have format ->save
+                for form in format:
+                    if form == "html":
+                        # html formart
+                        with open(my_gene+'.html', "w") as f:
+                            f.write(html)
+                        f.close()
+                    elif form == "json":
+                        #json formart
+                        with open(my_gene+'.json', "w") as f:
+                            json.dump(test[iricname], f)
+                        f.close()
 
 
     def query_by_chromosome(self, chro, start_pos, end_pos, number_process = cpu_count()-1, multi_processing = False,

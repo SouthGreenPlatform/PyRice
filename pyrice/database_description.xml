@@ -188,6 +188,7 @@
             <field>MSU</field>
         </fields>
     </database>
+
     <database dbname="snpseek" type="text/JSON" method="GET" normalize="false">
         <link stern="https://snp-seek.irri.org/ws/genomics/gene/osnippo/" aft=""/>
         <fields>
@@ -196,7 +197,6 @@
             <field op="=">end</field>
             <field op="=">model</field>
         </fields>
-        <data_struct indicator="div" identifier="id" identification_string="subcontent" line_separator="tr" cell_separator="td"/>
     </database>
 
     <!--cell_separator="b"-->

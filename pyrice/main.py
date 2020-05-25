@@ -21,6 +21,15 @@ args = parser.parse_args()
 
 utils.chrome_path = "/Users/mac/Downloads/chromedriver"
 
+import pke
+
+# initialize keyphrase extraction model, here TopicRank
+extractor = pke.unsupervised.TopicRank()
+
+# load the content of the document, here document is expected to be in raw
+# format (i.e. a simple text file) and preprocessing is carried out using spacy
+extractor.load_document(input='/path/to/input.txt', language='en')
+
 if __name__ == "__main__":
     # Search gene and query loc
     # query = MultiQuery()
@@ -30,13 +39,22 @@ if __name__ == "__main__":
 
 
     # Query with chromosome
+    # query = MultiQuery()
+    # result = query.query_by_chromosome(chro="chr01", start_pos="100000",
+    #                      end_pos="150000", number_process = 2, multi_processing=True, multi_threading=False,
+    #                      dbs='all')
+    # query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
+    # print("Output database:", result)
+
     query = MultiQuery()
-    result = query.query_by_chromosome(chro="chr01", start_pos="100000",
-                         end_pos="150000", number_process = 2, multi_processing=True, multi_threading=False,
-                         dbs='all')
+    result = query.query_by_chromosome(chro="chr01", start_pos="50000",
+                         end_pos="450000", number_process = 2, multi_processing=True, multi_threading=False,
+                            dbs =["ic4r"])
+                   #       dbs=["oryzabase", "rapdb", "gramene", "funricegene_genekeywords",
+                   # "funricegene_faminfo", "msu", "ic4r",
+                   # "funricegene_geneinfo"])
     query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
     print("Output database:", result)
-
 
     # # Query with ids, locs and irics
     # query = MultiQuery()
