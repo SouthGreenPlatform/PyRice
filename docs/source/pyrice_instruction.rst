@@ -226,8 +226,8 @@ Search new attributes on new databases
 
 Add new database
 ^^^^^^^^^^^^^^^^^^^
-PyRice package supports queries on new databases by adding its description manually on `database_description.xml`.
-With JSON format, here is SNP-SEEK database with API: https://snp-seek.irri.org/ws/genomics/gene/osnippo/chr01?start=1&end=15000&model=iric::
+PyRice package supports queries on new databases by adding its description manually in `database_description.xml`.
+Using JSON format, here is an example with SNP-SEEK database API: https://snp-seek.irri.org/ws/genomics/gene/osnippo/chr01?start=1&end=15000&model=iric::
 
     <database dbname="snpseek" type="text/JSON" method="GET" normalize="false">
         <link stern="https://snp-seek.irri.org/ws/genomics/gene/osnippo/" aft=""/>
@@ -241,11 +241,11 @@ With JSON format, here is SNP-SEEK database with API: https://snp-seek.irri.org/
 
 For more details:
     - dbname : database name
-    - type : the result return by API
-    - method : GET/POST (usually GET)
-    - normalize : normalize name of database true/false (usually false)
+    - type : the result returned by API
+    - method : GET/POST (default GET)
+    - normalize : normalize name of database true/false (default false)
     - stern : URL of API
-    - op : paramaters (see on API above)
+    - op : parameters (see on API above)
 
 For example, with an API from Planteome: http://browser.planteome.org/api/search/annotation?bioentity=AT4G32150::
 
