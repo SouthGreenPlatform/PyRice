@@ -3,6 +3,7 @@
 
 * [PrePrint version of our paper](https://www.biorxiv.org/content/10.1101/2020.04.20.049742v3)
 * [Online documentation](https://pyrice.readthedocs.io/en/latest/pyrice_instruction.html)
+* How to cite : [Bioinformatics Application notes](https://doi.org/10.1093/bioinformatics/btaa694)
 
 ## Install from source:
 
