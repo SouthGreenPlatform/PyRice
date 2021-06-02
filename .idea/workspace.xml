@@ -75,7 +75,7 @@
           <entry key="in" value="14" />
           <entry key="md" value="1384" />
           <entry key="py" value="1672" />
-          <entry key="rst" value="4958" />
+          <entry key="rst" value="4961" />
           <entry key="txt" value="75" />
           <entry key="xml" value="47" />
         </counts>
@@ -85,7 +85,7 @@
           <entry key="Markdown" value="1366" />
           <entry key="PLAIN_TEXT" value="89" />
           <entry key="Python" value="1721" />
-          <entry key="ReST" value="4927" />
+          <entry key="ReST" value="4930" />
           <entry key="XML" value="47" />
         </counts>
       </usages-collector>
@@ -128,7 +128,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
@@ -140,7 +140,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/source/pyrice_instruction.rst">
           <provider selected="true" editor-type-id="restructured-text-editor" />
         </entry>
@@ -229,7 +229,6 @@
         <option value="$PROJECT_DIR$/docs/source/pyrice_database.rst" />
         <option value="$PROJECT_DIR$/docs/source/conf.py" />
         <option value="$PROJECT_DIR$/pyrice/database_description.xml" />
-        <option value="$PROJECT_DIR$/docs/source/pyrice_instruction.rst" />
         <option value="$PROJECT_DIR$/pyrice/utils.py" />
         <option value="$PROJECT_DIR$/pyrice/build_dictionary.py" />
         <option value="$PROJECT_DIR$/pyrice/multi_query.py" />
@@ -237,11 +236,12 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/docs/source/install.rst" />
+        <option value="$PROJECT_DIR$/docs/source/pyrice_instruction.rst" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-209" />
+    <option name="x" value="-46" />
     <option name="y" value="25" />
     <option name="width" value="1280" />
     <option name="height" value="707" />
@@ -386,7 +386,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-15" y="25" width="1280" height="707" extended-state="0" />
+    <frame x="117" y="25" width="1280" height="707" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18506752" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -399,7 +399,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3284553" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.60426927" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.41215107" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -597,9 +597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/pyrice_instruction.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/source/modules.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
@@ -615,6 +612,9 @@
           <second_editor />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/pyrice_instruction.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
   </component>
 </project>
