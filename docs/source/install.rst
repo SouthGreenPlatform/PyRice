@@ -11,13 +11,11 @@ Install PyRice package (the newest version) with :command:`pip`::
 
 To choose older version of Pyrice package using :command:`pip`::
 
-    $ pip install pyrice==0.1.5
+    $ pip install pyrice==0.1.8
 
 
-Now there are 1 versions available (should use the latest version):
-
-    - Version 0.1.8: Addition of crawling JavaScript data with Selenium.
-
+Now there are 2 versions available (should use the latest version):
+    - Version 0.1.9: PyRice on Google Colab or other cloud platform. Updating the change output format.
         - If you want to use Selenium, please follow these steps
 
             + Please check carefully the current version of Chrome on your computer before downloading
@@ -28,7 +26,14 @@ Now there are 1 versions available (should use the latest version):
                 >>> from pyrice import utils
                 >>> utils.chrome_path = "the path of your Chrome driver"
 
+
+    - Version 0.1.8: Addition of crawling JavaScript data with Selenium.
+
     - Version 0.1.5: Crawl data without Selenium (unsupported).
+
+    **IN PROCESS**: If you want to install the newest demo of PyRice using :command:`pip`::
+
+    $ pip install -i https://test.pypi.org/simple/ pyrice
 
 Install via Github
 ------------------
@@ -37,7 +42,7 @@ Clone project on PyRice (the newest version) with :command:`git`::
 
   $ git clone https://github.com/SouthGreenPlatform/PyRice.git
 
-To choose older version of Pyrice package, choose release pyrice-0.1.5:
+To choose older version of Pyrice package, choose release pyrice-0.1.8:
 
 Download package
 ----------------
