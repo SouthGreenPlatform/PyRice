@@ -227,7 +227,7 @@ Search new attributes on new databases
 Add new database
 ^^^^^^^^^^^^^^^^^^^
 PyRice package supports queries on new databases by adding its description manually in `database_description.xml`.
-Using JSON format, here is an example with SNP-SEEK database API: https://snp-seek.irri.org/ws/genomics/gene/osnippo/chr01?start=1&end=15000&model=iric::
+Using JSON format, here is an example with SNP-SEEK database with API: https://snp-seek.irri.org/ws/genomics/gene/osnippo/chr01?start=1&end=15000&model=iric::
 
     <database dbname="snpseek" type="text/JSON" method="GET" normalize="false">
         <link stern="https://snp-seek.irri.org/ws/genomics/gene/osnippo/" aft=""/>
