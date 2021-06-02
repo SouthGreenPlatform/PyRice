@@ -31,6 +31,7 @@ extractor = pke.unsupervised.TopicRank()
 extractor.load_document(input='/path/to/input.txt', language='en')
 
 if __name__ == "__main__":
+
     # Search gene and query loc
     # query = MultiQuery()
     # result = query.search_on_chromosome(chro="chr01", start_pos="1",
@@ -48,8 +49,8 @@ if __name__ == "__main__":
 
     query = MultiQuery()
     result = query.query_by_chromosome(chro="chr01", start_pos="50000",
-                         end_pos="450000", number_process = 2, multi_processing=True, multi_threading=False,
-                            dbs =["ic4r"])
+                         end_pos="10000", number_process = 2, multi_processing=True, multi_threading=False,
+                            dbs ="all")
                    #       dbs=["oryzabase", "rapdb", "gramene", "funricegene_genekeywords",
                    # "funricegene_faminfo", "msu", "ic4r",
                    # "funricegene_geneinfo"])

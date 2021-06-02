@@ -82,7 +82,7 @@ def update_local_database(rapdb_url, oryzabase_url):
     :param oryzabase_url: (str) url for download oryzabase database
 
     """
-    with open("./support/id_dict.pkl", "rb") as f:
+    with open(os.path.join(dir_path,"support/id_dict.pkl"), "rb") as f:
         id_dict = pickle.load(f)
     f.close()
     # Oryzabase
@@ -109,14 +109,15 @@ def update_local_database(rapdb_url, oryzabase_url):
     with open(os.path.join(dir_path,"support/oryzabase.pkl"), "wb") as f:
         pickle.dump(oryzabase, f)
     f.close()
-    os.remove(oryzabase_filepath)
+    if (os.path.exists(oryzabase_filepath)):
+        os.remove(oryzabase_filepath)
     print('Build successfully Oryzabase database')
 
     # Rapdb
     print('Beginning Rapdb database download with requests')
-    wget.download(rapdb_url, source_filepath)
-    gunzip_shutil(source_filepath, dest_filepath)
-    print('Download successfully Oryzabase database')
+    wget.download(rapdb_url, os.path.join(dir_path,source_filepath))
+    gunzip_shutil(os.path.join(dir_path,source_filepath), os.path.join(dir_path,dest_filepath))
+    print('Download successfully Rapdb database')
     data = []
     with open(os.path.join(dir_path,dest_filepath), "r") as f:
         data = f.readlines()
@@ -137,10 +138,13 @@ def update_local_database(rapdb_url, oryzabase_url):
     with open(os.path.join(dir_path,"support/rapdb.pkl"), "wb") as f:
         pickle.dump(rapdb, f)
     f.close()
-    os.remove(source_filepath)
-    os.remove(dest_filepath)
+    if (os.path.exists(source_filepath)):
+        os.remove(source_filepath)
+    if (os.path.exists(dest_filepath)):
+        os.remove(dest_filepath)
     print('Build successfully Rapdb database')
 
 if __name__ == '__main__':
     update_gene_dictionary()
-    update_local_database("https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2019-12-17.tsv.gz", "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
+    update_local_database("https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2020-12-02.tsv.gz",
+                          "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")

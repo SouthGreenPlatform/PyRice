@@ -66,7 +66,6 @@ class MultiQuery():
         # Fetch database description
         database_description = BeautifulSoup(self.database_file, "xml").find_all("database", dbname=db.lower())
         if not database_description:
-            raise ValueError('Database Not Found')
             return
         # Get Headers list
         headers = []
@@ -194,9 +193,7 @@ class MultiQuery():
                     os.remove(latest_file)
                     return [iricname, db, data2dict]
 
-    #Do not use
-    @staticmethod
-    def save(result, save_path, format=None, hyper_link=False):
+    def save(self, result, save_path, format=None, hyper_link=False):
         """
         Save result of query with differents types of files
 
@@ -257,11 +254,21 @@ class MultiQuery():
                             if value != "":
                                 new_data.setdefault(db + "." + att, value)
                         new_dict.update(new_data)
-                    html_dict.setdefault("<a href= \"../gene/" + iricname + ".html\" target=\"_blank\">" + iricname + "</a>", new_dict)
+                    # Rapdb + MSU name
+                    all_name = ""
+                    if len(self.iric_dict[iricname]["msu7Name"]) > 0 and len(self.iric_dict[iricname]["raprepName"]) > 0:
+                        all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["raprepName"])) + "_MSUID"
+                    elif len(self.iric_dict[iricname]["msu7Name"]) > 0 and len(self.iric_dict[iricname]["raprepName"]) == 0:
+                        all_name = iricname +"_MSUID"
+                    elif len(self.iric_dict[iricname]["msu7Name"]) == 0 and len(self.iric_dict[iricname]["raprepName"]) > 0:
+                        all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["raprepName"]))
+                    else:
+                        all_name = iricname
+                    html_dict.setdefault("<a href= \"../gene/" + all_name + ".html\" target=\"_blank\">" + all_name + "</a>", new_dict)
                 if hyper_link == True:
-                    csv_dict.setdefault("=HYPERLINK(\"file://"+path+"/"+iricname + ".html\""+",\""+ iricname+"\")",new_dict)
+                    csv_dict.setdefault("=HYPERLINK(\"file://"+path+"/"+ all_name + ".html\""+",\""+ all_name+"\")",new_dict)
                 else:
-                    csv_dict.setdefault(iricname, new_dict)
+                    csv_dict.setdefault(all_name, new_dict)
                #= "\"=HYPERLINK(\"\"file://" + DocumentDataType.strDirectoy + docName + "\"\",\"\"" + DocumentDataType.strDirectoy + docName + "\"\")\"" + ",";
             for form in format:
                 if form == "csv" :
@@ -322,7 +329,17 @@ class MultiQuery():
                                 for att in homologous_genes:
                                     v["homology"]["homologous_genes"].pop(att, None)
             for iricname in test.keys():
-                my_gene = gene_folder + iricname
+                # Rapdb + MSU name
+                all_name = ""
+                if len(self.iric_dict[iricname]["msu7Name"]) > 0 and len(self.iric_dict[iricname]["raprepName"]) > 0:
+                    all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["raprepName"])) + "_MSUID"
+                elif len(self.iric_dict[iricname]["msu7Name"]) > 0 and len(self.iric_dict[iricname]["raprepName"]) == 0:
+                    all_name = iricname + "_MSUID"
+                elif len(self.iric_dict[iricname]["msu7Name"]) == 0 and len(self.iric_dict[iricname]["raprepName"]) > 0:
+                    all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["raprepName"]))
+                else:
+                    all_name = iricname
+                my_gene = gene_folder + all_name
                 build_direction = "LEFT_TO_RIGHT"
                 table_attributes = {"style": "width:100%","class" : "table table-striped","border" : 1 }
                 html = json2table.convert(test[iricname],

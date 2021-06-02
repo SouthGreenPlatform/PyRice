@@ -36,12 +36,20 @@ def connection_error(link, data = "", type = None, db = None, gene_id=None):
     """
     if type =="javascript":
         options = webdriver.ChromeOptions()
+
         profile = {"plugins.plugins_list": [{"enabled": False, "name": "Chrome PDF Viewer"}],
                    # Disable Chrome's PDF Viewer
                    "download.default_directory": download_dir, "download.extensions_to_open": "applications/pdf"}
         options.add_experimental_option("prefs", profile)
         try:
-            driver = webdriver.Chrome(chrome_path, chrome_options=options)
+            if (os.path.exists(chrome_path)):
+                driver = webdriver.Chrome(chrome_path, chrome_options=options)
+            else:
+                options = webdriver.ChromeOptions()
+                options.add_argument('--headless')
+                options.add_argument('--no-sandbox')
+                options.add_argument('--disable-dev-shm-usage')
+                driver = webdriver.Chrome(options=options)
             driver.get(link)
             wait = WebDriverWait(driver, 5)
             men_menu = wait.until(ec.visibility_of_element_located((By.XPATH, data)))
