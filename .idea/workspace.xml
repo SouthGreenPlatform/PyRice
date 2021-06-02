@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b41311d-013e-4b0c-ab50-7cb067cb2544" name="Default Changelist" comment="" />
+    <list default="true" id="2b41311d-013e-4b0c-ab50-7cb067cb2544" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +43,7 @@
           <entry key="Makefile" value="1" />
           <entry key="PKG-INFO" value="1" />
           <entry key="csv" value="3" />
+          <entry key="gitignore" value="1" />
           <entry key="html" value="1" />
           <entry key="in" value="3" />
           <entry key="ipynb" value="2" />
@@ -63,7 +66,7 @@
           <entry key="Image" value="5" />
           <entry key="JSON" value="1" />
           <entry key="Markdown" value="8" />
-          <entry key="PLAIN_TEXT" value="20" />
+          <entry key="PLAIN_TEXT" value="21" />
           <entry key="Python" value="50" />
           <entry key="ReST" value="39" />
           <entry key="XML" value="5" />
@@ -140,9 +143,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/source/pyrice_instruction.rst">
           <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1515">
+              <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -177,7 +189,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>funricegene_geneinfo</find>
       <find>]</find>
       <find>&lt;</find>
       <find>note</find>
@@ -207,6 +218,7 @@
       <find>iricname</find>
       <find>html_dict</find>
       <find>all_name</find>
+      <find>Add new database</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -237,11 +249,12 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/docs/source/install.rst" />
         <option value="$PROJECT_DIR$/docs/source/pyrice_instruction.rst" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-46" />
+    <option name="x" value="177" />
     <option name="y" value="25" />
     <option name="width" value="1280" />
     <option name="height" value="707" />
@@ -261,17 +274,6 @@
             <path>
               <item name="PyRice" type="b2602c69:ProjectViewProjectNode" />
               <item name="PyRice" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PyRice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PyRice" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PyRice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PyRice" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PyRice" type="b2602c69:ProjectViewProjectNode" />
@@ -386,9 +388,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="117" y="25" width="1280" height="707" extended-state="0" />
+    <frame x="177" y="25" width="1280" height="707" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18506752" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18506752" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -399,7 +402,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3284553" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.41215107" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.41379312" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -597,12 +600,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/modules.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/pyrice.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/modules.rst" />
+    <entry file="file://$PROJECT_DIR$/docs/source/pyrice.rst" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -615,6 +614,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/source/pyrice_instruction.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1515">
+          <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
