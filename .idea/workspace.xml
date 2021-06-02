@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b41311d-013e-4b0c-ab50-7cb067cb2544" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/install.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/install.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-    </list>
+    <list default="true" id="2b41311d-013e-4b0c-ab50-7cb067cb2544" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +50,7 @@
           <entry key="pkl" value="2" />
           <entry key="png" value="5" />
           <entry key="py" value="50" />
-          <entry key="rst" value="37" />
+          <entry key="rst" value="39" />
           <entry key="txt" value="8" />
           <entry key="xml" value="5" />
           <entry key="yml" value="1" />
@@ -70,7 +65,7 @@
           <entry key="Markdown" value="8" />
           <entry key="PLAIN_TEXT" value="20" />
           <entry key="Python" value="50" />
-          <entry key="ReST" value="37" />
+          <entry key="ReST" value="39" />
           <entry key="XML" value="5" />
           <entry key="YAML" value="1" />
         </counts>
@@ -98,15 +93,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pyrice/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyrice/multi_query.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -146,8 +132,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="67">
-                <caret line="32" column="4" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+              <first_editor relative-caret-position="37">
+                <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
               </first_editor>
               <second_editor />
             </state>
@@ -255,7 +241,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="151" />
+    <option name="x" value="-209" />
     <option name="y" value="25" />
     <option name="width" value="1280" />
     <option name="height" value="707" />
@@ -499,8 +485,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/pyrice.rst" />
-    <entry file="file://$PROJECT_DIR$/docs/source/modules.rst" />
     <entry file="file://$PROJECT_DIR$/pyrice/support/download/download_history.log">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -616,11 +600,17 @@
     <entry file="file://$PROJECT_DIR$/docs/source/pyrice_instruction.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/modules.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/pyrice.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="67">
-            <caret line="32" column="4" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+          <first_editor relative-caret-position="37">
+            <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
           </first_editor>
           <second_editor />
         </state>
