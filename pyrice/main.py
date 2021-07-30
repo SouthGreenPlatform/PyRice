@@ -38,31 +38,43 @@ if __name__ == "__main__":
     #                            end_pos="20000", number_process = 4, dbs="all", save_path="./result/")
     # print("Output database:", result)
 
+    # Find list of associated genes
+    query = MultiQuery()
+    result = query.query_expansion(ids=[],
+                             locs=["LOC_Os02g01800", "LOC_Os07g39750"],
+                             irics=[], number_process = 2)
+    query.save(result,save_path = "./result/",format=["csv","html","json","pkl"],hyper_link=False)
+    print("Output database:",result)
 
     # Query with chromosome
-    # query = MultiQuery()
-    # result = query.query_by_chromosome(chro="chr01", start_pos="100000",
-    #                      end_pos="150000", number_process = 2, multi_processing=True, multi_threading=False,
-    #                      dbs='all')
-    # query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
-    # print("Output database:", result)
-
     query = MultiQuery()
-    result = query.query_by_chromosome(chro="chr01", start_pos="50000",
-                         end_pos="10000", number_process = 2, multi_processing=True, multi_threading=False,
-                            dbs ="all")
-                   #       dbs=["oryzabase", "rapdb", "gramene", "funricegene_genekeywords",
-                   # "funricegene_faminfo", "msu", "ic4r",
-                   # "funricegene_geneinfo"])
+    result = query.query_by_chromosome(chro="chr01", start_pos="1000",
+                         end_pos="5000", number_process = 2, multi_processing=False, multi_threading=True,
+                         dbs="all",query_expansion = True)
     query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
     print("Output database:", result)
+
+    query = MultiQuery()
+    result = query.query_by_ids(ids=["Os08g0164400", "Os07g0586200"],
+                             locs=["LOC_Os10g01006", "LOC_Os07g39750"],
+                             irics=["OsNippo01g010050", "OsNippo01g010300"], number_process = 3, multi_processing=False, multi_threading=True,
+                         dbs=["gwas_atlas","planttfdb_tf","planttfdb_target_gene"],query_expansion = True)
+    query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
+    print("Output database:", result)
+
+    # query = MultiQuery()
+    # result = query.query_by_chromosome(chro="chr01", start_pos="50000",
+    #                      end_pos="10000", number_process = 2, multi_processing=True, multi_threading=False,
+    #                      dbs ="all")
+    # query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
+    # print("Output database:", result)
 
     # # Query with ids, locs and irics
     # query = MultiQuery()
     # result = query.query_by_ids(ids=["Os08g0164400", "Os07g0586200"],
     #                          locs=["LOC_Os10g01006", "LOC_Os07g39750"],
     #                          irics=["OsNippo01g010050", "OsNippo01g010300"], number_process = 2,
-    #                          multi_processing=False, multi_threading=False, dbs="all")
+    #                          multi_processing=False, multi_threading=False, dbs="all", query_expansion = True)
     # query.save(result,save_path = "./result/",format=["csv","html","json","pkl"],hyper_link=False)
     # print("Output database:",result)
 
@@ -73,6 +85,7 @@ if __name__ == "__main__":
     # query.save(result, save_path="./result/", format=["csv", "html", "json", "pkl"], hyper_link=False)
     # print("Output database:",result)
 
+    # Query with new database
     # query = MultiQuery()
     # result = query.query_new_database(atts=['AT2G03340'], number_process=4,
     #                                   multi_processing=False, multi_threading=False, dbs=['arabidopsis'])

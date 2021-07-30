@@ -21,6 +21,20 @@
         <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
     </database>
 
+    <database dbname="planttfdb_tf" type="text/JSON" method="POST">
+        <link stern="http://sparql.southgreen.fr/"/>
+        <fields>
+            <field>BASE &lt;http://www.southgreen.fr/agrold/&gt; PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#&gt; PREFIX obo: &lt;http://purl.obolibrary.org/obo/&gt; PREFIX vocab:&lt;vocabulary/&gt; SELECT DISTINCT ?TF ?regulated_gene from &lt;http://www.southgreen.fr/agrold/plantftdb&gt; WHERE {?TF obo:RO_0002211 ?regulated_gene . FILTER(regex(?regulated_gene,&quot;^http://www.southgreen.fr/agrold/resource/GENE_ID&quot;))}</field>
+        </fields>
+    </database>
+
+    <database dbname="planttfdb_target_gene" type="text/JSON" method="POST">
+        <link stern="http://sparql.southgreen.fr/"/>
+        <fields>
+            <field>BASE &lt;http://www.southgreen.fr/agrold/&gt; PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#&gt; PREFIX obo: &lt;http://purl.obolibrary.org/obo/&gt; PREFIX vocab:&lt;vocabulary/&gt; SELECT DISTINCT ?target_gene ?association_score WHERE {&lt;http://www.southgreen.fr/agrold/resource/GENE_ID&gt; obo:RO_0002328 ?associatedWith . ?associatedWith vocab:associationTarget ?target_gene; vocab:associationValue ?association_score. }</field>
+        </fields>
+    </database>
+
     <database dbname="rnd" type="text/html" method="GET">
         <link stern="https://bis.zju.edu.cn/ricenetdb/genenetwork.php?" aft=""/>
         <headers>
@@ -212,9 +226,6 @@
         </fields>
         <data_struct indicator="div" identifier="class" identification_string="content" line_separator="div" cell_separator="pre"/>
         <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t|\*</prettify>
-    </database>
-    <database dbname="planttfdb" type="text/csv" method="downloadable">
-        <link stern="http://planttfdb.cbi.pku.edu.cn/download.php" aft=""/>
     </database>
 
     <database dbname="uniprot_getid" type="text/html" method="GET">

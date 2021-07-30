@@ -110,13 +110,17 @@ class MultiQuery():
         # Handle JSON based query
         elif (database_description[0]["type"] == "text/JSON"):
             # Return as a List of Dictionary
-            if len(res.content) > 10:
+            if len(res.content) > 3:
                 if iricname == "snpseek":
                     return [iricname,qfields[-1],json.loads(res.content.decode('utf-8'))]
                 elif db == "ic4r":
                     return [iricname,db,json.loads(res.content.decode('utf-8'))[0][1]]
                 elif db == "gramene":
-                    return [iricname,db,json.loads(res.content.decode('utf-8'))[0]]
+                    r_tmp = json.loads(res.content.decode('utf-8'))
+                    if len(r_tmp) > 0:
+                        return [iricname,db,r_tmp[0]]
+                    else:
+                        return [iricname,db,{}]
                 else:
                     return [iricname,db,json.loads(res.content.decode('utf-8'))]
             if verbose: print(self.result[db])
@@ -188,7 +192,8 @@ class MultiQuery():
                         data2dict.setdefault(key, [])
                         for value in data[key]:
                             if key == "Mapped Gene(s)" or key == "Consequence Type(s)":
-                                value = value.replace('\n', ' ')
+                                if type(value) == str:
+                                    value = value.replace('\n', ' ')
                             data2dict[key].append(value)
                     os.remove(latest_file)
                     return [iricname, db, data2dict]
@@ -255,16 +260,19 @@ class MultiQuery():
                                 new_data.setdefault(db + "." + att, value)
                         new_dict.update(new_data)
                     # Rapdb + MSU name
+                if iricname in self.iric_dict.keys():
                     all_name = ""
                     if len(self.iric_dict[iricname]["msu7Name"]) > 0 and len(self.iric_dict[iricname]["raprepName"]) > 0:
-                        all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["raprepName"])) + "_MSUID"
+                        all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["raprepName"])) + "_" + next(iter(self.iric_dict[iricname]["msu7Name"]))
                     elif len(self.iric_dict[iricname]["msu7Name"]) > 0 and len(self.iric_dict[iricname]["raprepName"]) == 0:
-                        all_name = iricname +"_MSUID"
+                        all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["msu7Name"]))
                     elif len(self.iric_dict[iricname]["msu7Name"]) == 0 and len(self.iric_dict[iricname]["raprepName"]) > 0:
                         all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["raprepName"]))
                     else:
                         all_name = iricname
-                    html_dict.setdefault("<a href= \"../gene/" + all_name + ".html\" target=\"_blank\">" + all_name + "</a>", new_dict)
+                else:
+                    all_name = iricname
+                html_dict.setdefault("<a href= \"../gene/" + all_name + ".html\" target=\"_blank\">" + all_name + "</a>", new_dict)
                 if hyper_link == True:
                     csv_dict.setdefault("=HYPERLINK(\"file://"+path+"/"+ all_name + ".html\""+",\""+ all_name+"\")",new_dict)
                 else:
@@ -330,13 +338,16 @@ class MultiQuery():
                                     v["homology"]["homologous_genes"].pop(att, None)
             for iricname in test.keys():
                 # Rapdb + MSU name
-                all_name = ""
-                if len(self.iric_dict[iricname]["msu7Name"]) > 0 and len(self.iric_dict[iricname]["raprepName"]) > 0:
-                    all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["raprepName"])) + "_MSUID"
-                elif len(self.iric_dict[iricname]["msu7Name"]) > 0 and len(self.iric_dict[iricname]["raprepName"]) == 0:
-                    all_name = iricname + "_MSUID"
-                elif len(self.iric_dict[iricname]["msu7Name"]) == 0 and len(self.iric_dict[iricname]["raprepName"]) > 0:
-                    all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["raprepName"]))
+                if iricname in self.iric_dict.keys():
+                    all_name = ""
+                    if len(self.iric_dict[iricname]["msu7Name"]) > 0 and len(self.iric_dict[iricname]["raprepName"]) > 0:
+                        all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["raprepName"])) + "_" + next(iter(self.iric_dict[iricname]["msu7Name"]))
+                    elif len(self.iric_dict[iricname]["msu7Name"]) > 0 and len(self.iric_dict[iricname]["raprepName"]) == 0:
+                        all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["msu7Name"]))
+                    elif len(self.iric_dict[iricname]["msu7Name"]) == 0 and len(self.iric_dict[iricname]["raprepName"]) > 0:
+                        all_name = iricname + "_" + next(iter(self.iric_dict[iricname]["raprepName"]))
+                    else:
+                        all_name = iricname
                 else:
                     all_name = iricname
                 my_gene = gene_folder + all_name
@@ -359,8 +370,64 @@ class MultiQuery():
                         f.close()
 
 
+    def query_expansion(self, ids = None, locs = None, irics = None, number_process = cpu_count()-1):
+        """
+        Query gene using id, loc or iric
+
+        :param ids: (list) list id of gene
+        :param locs: (list) list loc of gene
+        :param irics: (list) list iric name of gene
+        :param number_process: (int) number of process or number of threading
+
+        :return: a dictionary, format: gene:{database: attribute}
+        """
+        set_iric = set()
+        if ids != None:
+            for id in ids:
+                if id in self.id_dict.keys():
+                    set_iric.add(self.id_dict[id])
+        if locs != None:
+            for loc in locs:
+                if loc in self.loc_dict.keys():
+                    set_iric.add(self.loc_dict[loc])
+        if irics != None:
+            for iric in irics:
+                if iric in self.iric_dict.keys():
+                    set_iric.add(iric)
+
+        self.result = dict()
+        # Check support of database
+        name_db = ["planttfdb_tf","planttfdb_target_gene"]
+        # Query in multi_database
+        # i = 1
+        number_query = len(set_iric)
+        list_ids = []
+        list_dbs = []
+        list_key = []
+        for key in set_iric:
+            value = self.iric_dict[key]
+            # print("Query iricname: {} --- Gene {}/{}".format(key, i, number_query))
+            # i += 1
+            self.result.setdefault(key, dict())
+            for db in name_db:
+                if db == "planttfdb_tf" or db == "planttfdb_target_gene":
+                    for loc in value["msu7Name"]:
+                        list_ids.append([loc])
+                        list_dbs.append(db)
+                        list_key.append(key)
+        try:
+            p = ThreadPoolExecutor(max_workers=number_process)
+            tmp = p.map(self.query, list_key, list_dbs, list_ids)
+            for t in tmp:
+                if t != None:
+                    self.result[t[0]].setdefault(t[1], t[2])
+        finally:
+            p.shutdown()
+        return self.result
+
+
     def query_by_chromosome(self, chro, start_pos, end_pos, number_process = cpu_count()-1, multi_processing = False,
-                   multi_threading = True, dbs='all'):
+                   multi_threading = True, dbs='all', query_expansion = False):
         """
         Query gene by chromosome
 
@@ -368,16 +435,17 @@ class MultiQuery():
         :param start_pos: (str) start of chromosome
         :param end_pos: (str) end of chromosome
         :param number_process: (int) number of process or number of threading
-        :param multi_processing: (bool) if True use multi_processing
-        :param multi_threading: (bool) if True use multi_threading
-        :param dbs: list databases (support 10 available databases)
+        :param multi_processing: (bool) if True, use multi_processing
+        :param multi_threading: (bool) if True, use multi_threading
+        :param dbs: (list) list databases (support 10 available databases)
+        :param query_expansion: (bool) if True, find list list of associated genes
 
         :return: a dictionary, format : gene:{database: attributes}
         """
         #Check support of database
         support_db = ["oryzabase", "rapdb", "gramene", "funricegene_genekeywords",
                    "funricegene_faminfo", "msu", "ic4r",
-                   "funricegene_geneinfo","embl_ebi","gwas_atlas"]
+                   "funricegene_geneinfo","embl_ebi","gwas_atlas","planttfdb_tf","planttfdb_target_gene"]
         if dbs == 'all':
             name_db = support_db
         else:
@@ -390,6 +458,27 @@ class MultiQuery():
         #Query in multi_database
         i=1
         file_id = self.search_on_chromosome(chro=chro,start_pos=start_pos,end_pos=end_pos,number_process = number_process)
+        self.result = dict()
+        if query_expansion:
+            list_expansion = self.query_expansion(irics = list(file_id.keys()))
+            set_target_gene = set()
+            for new_iric in list_expansion.keys():
+                if 'planttfdb_tf' in list_expansion[new_iric]:
+                    list_tf = list_expansion[new_iric]['planttfdb_tf']['results']['bindings']
+                    if len(list_tf) > 0:
+                        for value in list_tf:
+                            target_gene = value['TF']['value'].split('/')[-1]
+                            set_target_gene.add(target_gene)
+                if 'planttfdb_target_gene' in list_expansion[new_iric]:
+                    list_target_gene = list_expansion[new_iric]['planttfdb_target_gene']['results']['bindings']
+                    if len(list_target_gene) > 0:
+                        for value in list_tf:
+                            target_gene = value['target_gene']['value'].split('/')[-1]
+                            set_target_gene.add(target_gene)
+            for target_gene in set_target_gene:
+                if target_gene in self.loc_dict.keys():
+                    file_id.setdefault(self.loc_dict[target_gene],self.iric_dict[self.loc_dict[target_gene]])
+            print("Add {} associated genes for query information".format(len(set_target_gene)))
         self.result = dict()
         number_query = len(file_id)
         # No multi-processing and No multi-threading
@@ -410,7 +499,7 @@ class MultiQuery():
                             tmp = self.query(key, db, [ident])
                             if tmp != None:
                                 self.result[tmp[0]].setdefault(tmp[1], tmp[2])
-                    elif db == "msu":
+                    elif db == "msu" or db == "planttfbd_tf" or db =="planttfdb_target_gene":
                         for loc in value["msu7Name"]:
                             tmp = self.query(key, db, [loc])
                             if tmp != None:
@@ -469,7 +558,7 @@ class MultiQuery():
                                 list_ids.append([ident])
                                 list_dbs.append(db)
                                 list_key.append(key)
-                        elif db == "msu":
+                        elif db == "msu" or db == "planttfdb_tf" or db == "planttfdb_target_gene":
                             for loc in value["msu7Name"]:
                                 list_ids.append([loc])
                                 list_dbs.append(db)
@@ -534,7 +623,7 @@ class MultiQuery():
                             list_ids.append([ident])
                             list_dbs.append(db)
                             list_key.append(key)
-                    elif db == "msu":
+                    elif db == "msu" or db == "planttfdb_tf" or db =="planttfdb_target_gene":
                         for loc in value["msu7Name"]:
                             list_ids.append([loc])
                             list_dbs.append(db)
@@ -606,8 +695,8 @@ class MultiQuery():
             p.shutdown()
         return result
 
-    def query_by_ids(self, ids, locs, irics, number_process = cpu_count()-1, multi_processing = False,
-                   multi_threading = True, dbs='all'):
+    def query_by_ids(self, ids = None, locs = None, irics = None, number_process = cpu_count()-1, multi_processing = False,
+                   multi_threading = True, dbs='all',query_expansion = False):
         """
         Query gene using id, loc or iric
 
@@ -617,26 +706,49 @@ class MultiQuery():
         :param number_process: (int) number of process or number of threading
         :param multi_processing: (bool) if True use multi_processing
         :param multi_threading: (bool) if True use multi_threading
-        :param dbs: list databases (support 10 available databases)
+        :param dbs: (list) databases (support 10 available databases)
+        :param query_expansion: (bool) if True, find list list of associated genes
 
         :return: a dictionary, format: gene:{database: attribute}
         """
         set_iric = set()
-        for id in ids:
-            if id in self.id_dict.keys():
-                set_iric.add(self.id_dict[id])
-        for loc in locs:
-            if loc in self.loc_dict.keys():
-                set_iric.add(self.loc_dict[loc])
-        for iric in irics:
-            if iric in self.iric_dict.keys():
-                set_iric.add(iric)
-
+        if ids != None:
+            for id in ids:
+                if id in self.id_dict.keys():
+                    set_iric.add(self.id_dict[id])
+        if locs != None:
+            for loc in locs:
+                if loc in self.loc_dict.keys():
+                    set_iric.add(self.loc_dict[loc])
+        if irics != None:
+            for iric in irics:
+                if iric in self.iric_dict.keys():
+                    set_iric.add(iric)
+        if query_expansion:
+            list_expansion = self.query_expansion(irics = list(set_iric))
+            set_target_gene = set()
+            for new_iric in list_expansion.keys():
+                if 'planttfdb_tf' in list_expansion[new_iric]:
+                    list_tf = list_expansion[new_iric]['planttfdb_tf']['results']['bindings']
+                    if len(list_tf) > 0:
+                        for value in list_tf:
+                            target_gene = value['TF']['value'].split('/')[-1]
+                            set_target_gene.add(target_gene)
+                if 'planttfdb_target_gene' in list_expansion[new_iric]:
+                    list_target_gene = list_expansion[new_iric]['planttfdb_target_gene']['results']['bindings']
+                    if len(list_target_gene) > 0:
+                        for value in list_tf:
+                            target_gene = value['target_gene']['value'].split('/')[-1]
+                            set_target_gene.add(target_gene)
+            for target_gene in set_target_gene:
+                if target_gene in self.loc_dict.keys():
+                    set_iric.add(self.loc_dict[target_gene])
+            print("Add {} associated genes for query information".format(len(set_target_gene)))
         self.result = dict()
         # Check support of database
         support_db = ["oryzabase", "gramene", "funricegene_genekeywords",
                       "funricegene_faminfo", "msu", "rapdb", "ic4r",
-                      "funricegene_geneinfo","embl_ebi","gwas_atlas"]
+                      "funricegene_geneinfo","embl_ebi","gwas_atlas","planttfdb_tf","planttfdb_target_gene"]
         if dbs == 'all':
             name_db = support_db
         else:
@@ -667,7 +779,7 @@ class MultiQuery():
                             tmp = self.query(key, db, [ident])
                             if tmp != None:
                                 self.result[tmp[0]].setdefault(tmp[1], tmp[2])
-                    elif db == "msu":
+                    elif db == "msu" or db == "planttfdb_tf" or db =="planttfdb_target_gene":
                         for loc in value["msu7Name"]:
                             tmp = self.query(key, db, [loc])
                             if tmp != None:
@@ -727,7 +839,7 @@ class MultiQuery():
                                 list_ids.append([ident])
                                 list_dbs.append(db)
                                 list_key.append(key)
-                        elif db == "msu":
+                        elif db == "msu" or db == "planttfdb_tf" or db =="planttfdb_target_gene":
                             for loc in value["msu7Name"]:
                                 list_ids.append([loc])
                                 list_dbs.append(db)
@@ -792,7 +904,7 @@ class MultiQuery():
                             list_ids.append([ident])
                             list_dbs.append(db)
                             list_key.append(key)
-                    elif db == "msu":
+                    elif db == "msu" or db == "planttfdb_tf" or db =="planttfdb_target_gene":
                         for loc in value["msu7Name"]:
                             list_ids.append([loc])
                             list_dbs.append(db)
@@ -842,7 +954,7 @@ class MultiQuery():
                     p.shutdown()
         return self.result
 
-    def query_new_database(self, atts, number_process = cpu_count() -1, multi_processing = False, multi_threading = True ,dbs = None):
+    def query_new_database(self, atts, number_process = cpu_count()-1, multi_processing = False, multi_threading = True ,dbs = None):
         """
         Query for new attributes on new databases
 
@@ -873,7 +985,7 @@ class MultiQuery():
                 print("Query attribute: {} --- attribute {}/{}".format(key, i, number_query))
                 self.result.setdefault(key,dict())
                 for db in name_db:
-                    tmp = self.query(key, db, [key],True)
+                    tmp = self.query(key, db, [key])
                     if tmp != None:
                         self.result[tmp[0]].setdefault(tmp[1], tmp[2])
                 i+=1

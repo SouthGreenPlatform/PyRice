@@ -59,7 +59,7 @@ def update_gene_dictionary():
 
 source_filepath = "support/rapdb.gz"
 dest_filepath = "support/rapdb.tsv"
-oryzabase_filepath = 'support/oryzabase.txt'
+oryzabase_filepaths = ['support/oryzabase.txt','support/oryzabase_ref.txt']
 
 def gunzip_shutil(source_filepath, dest_filepath, block_size=65536):
     """
@@ -79,18 +79,65 @@ def update_local_database(rapdb_url, oryzabase_url):
     Update function for rapdb database and oryzabase database
 
     :param rapdb_url: (str) url for download rapdb database
-    :param oryzabase_url: (str) url for download oryzabase database
+    :param oryzabase_url: (list) url for download oryzabase database (1st: url of genes, 2nd: url of refs)
 
     """
     with open(os.path.join(dir_path,"support/id_dict.pkl"), "rb") as f:
         id_dict = pickle.load(f)
     f.close()
-    # Oryzabase
+    ## Oryzabase
     print('Beginning Oryzabase database download with requests')
-    wget.download(oryzabase_url,os.path.join(dir_path,oryzabase_filepath))
+    for url,oryzabase_filepath in zip(oryzabase_url,oryzabase_filepaths):
+        wget.download(url,os.path.join(dir_path,oryzabase_filepath))
     print('Download successfully Oryzabase database')
 
-    with open(os.path.join(dir_path,oryzabase_filepath), "r") as f:
+    # Oryzabase refs
+    with open(os.path.join(dir_path,oryzabase_filepaths[1]), 'rb') as f:
+        data = f.readlines()
+    f.close()
+    filter_data = []
+    count = 0
+    for d in data:
+        try:
+            filter_data.append(d.decode('utf-8').split("\t"))
+        except:
+            count += 1
+
+    count = 0
+    id_2_pubmed = dict()
+    for d in filter_data[1:]:
+        # Check length pubmed id
+        if len(d[1]) > 3:
+            # Check case '_,_,_'
+            tmp_d = d[8].replace(',', '')
+            if len(d[8]) > 0 and d[8] != '\r\n' and d[8] != '-' and d[8] != '_' and not tmp_d == len(tmp_d) * tmp_d[0]:
+                use_name = d[8]
+            # Check if Gene Name Synonym
+            elif len(d[9]) > 0 and d[9] != '\r\n' and d[9] != '-' and d[9] != '_':
+                use_name = d[9]
+                print(use_name)
+            else:
+                continue
+            use_name = " ".join(use_name.split())
+            name = use_name.split(',')
+            for n in name:
+                # Remove space
+                n = " ".join(n.split())
+                if len(n) > 0 and n != '_' and n != '-':
+                    article = {"PubMedId": d[1],
+                               "Author": d[2],
+                               "Title": d[3],
+                               "Journal": d[4],
+                               "Year": d[7]}
+                    if n not in id_2_pubmed.keys():
+                        id_2_pubmed.setdefault(n, [])
+                        id_2_pubmed[n].append(article)
+                    else:
+                        id_2_pubmed[n].append(article)
+        else:
+            count += 1
+    # Oryzabase genes
+    with open(os.path.join(dir_path,oryzabase_filepaths[0]), "r") as f:
         data = f.readlines()
     f.close()
     filter_data = []
@@ -106,11 +153,35 @@ def update_local_database(rapdb_url, oryzabase_url):
                 for i in range(len(filter_data[0])):
                     if d[i] != '\n' and len(d[i]) > 1:
                         oryzabase[iric_name]["oryzabase"].setdefault(filter_data[0][i], d[i])
+
+                # Match CGSNL Gene Symbol with id
+                if len(d[1]) > 0 and d[1] != '\r\n' and d[1] != '-' and d[1] != '_':
+                    use_name = d[1]
+                    # Match Gene symbol synonym(s) with id
+                elif len(d[2]) > 0 and d[2] != '\r\n' and d[2] != '-' and d[2] != '_':
+                    use_name = d[2]
+                else:
+                    continue
+                # Remove space
+                use_name = " ".join(use_name.split())
+                name = use_name.split(',')
+                pubmed_exist = set()
+                pubmed_final = []
+                for n in name:
+                    # Remove space
+                    n = " ".join(n.split())
+                    # Check exist pubmed id
+                    if len(n) > 0 and n != '_' and n != '-' and n in id_2_pubmed.keys():
+                        for pubmed_art in id_2_pubmed[n]:
+                            if pubmed_art['PubMedId'] not in pubmed_exist:
+                                pubmed_final.append(pubmed_art)
+                oryzabase[iric_name]["oryzabase"].setdefault("Reference", pubmed_final)
     with open(os.path.join(dir_path,"support/oryzabase.pkl"), "wb") as f:
         pickle.dump(oryzabase, f)
     f.close()
-    if (os.path.exists(oryzabase_filepath)):
-        os.remove(oryzabase_filepath)
+    for oryzabase_filepath in oryzabase_filepaths:
+        if (os.path.exists(oryzabase_filepath)):
+            os.remove(oryzabase_filepath)
     print('Build successfully Oryzabase database')
 
     # Rapdb
@@ -145,6 +216,7 @@ def update_local_database(rapdb_url, oryzabase_url):
     print('Build successfully Rapdb database')
 
 if __name__ == '__main__':
-    update_gene_dictionary()
-    update_local_database("https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2020-12-02.tsv.gz",
-                          "https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST")
+    #update_gene_dictionary()
+    update_local_database("https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2021-05-10.tsv.gz",
+                          ["https://shigen.nig.ac.jp/rice/oryzabase/gene/download?classtag=GENE_EN_LIST","https://shigen.nig.ac.jp/rice/oryzabase/reference/download"])
+

@@ -1,0 +1,98 @@
+﻿VarID,Traits,Species,Position,P-values,R2(%),"Mapped Gene(s)","Consequence Type(s)",PMID
+osa8682695,"amylose percent",Rice,chr6:1634284,3.13E-08,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+downstream_gene_variant
+upstream_gene_variant
+",27881726
+osa8682695,"amylopectin percent",Rice,chr6:1634284,3.72E-08,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+downstream_gene_variant
+upstream_gene_variant
+",27881726
+osa8682695,"amylose 1 (true amylose chains) percent",Rice,chr6:1634284,2.14E-07,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+downstream_gene_variant
+upstream_gene_variant
+",27881726
+osa8682695,"amylose 2 (long chain amylopectin) percent",Rice,chr6:1634284,1.32E-08,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+downstream_gene_variant
+upstream_gene_variant
+",27881726
+osa8682695,"medium-chain amylopectin percent",Rice,chr6:1634284,6.25E-11,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+downstream_gene_variant
+upstream_gene_variant
+",27881726
+osa8682695,"short-chain amylopectin percent",Rice,chr6:1634284,2.29E-06,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+downstream_gene_variant
+upstream_gene_variant
+",27881726
+osa8682855,"amylose percent",Rice,chr6:1637153,2.83E-10,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+3_prime_UTR_variant
+downstream_gene_variant
+",27881726
+osa8682855,"amylopectin percent",Rice,chr6:1637153,3.79E-10,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+3_prime_UTR_variant
+downstream_gene_variant
+",27881726
+osa8682855,"amylose 1 (true amylose chains) percent",Rice,chr6:1637153,3.42E-09,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+3_prime_UTR_variant
+downstream_gene_variant
+",27881726
+osa8682855,"amylose 2 (long chain amylopectin) percent",Rice,chr6:1637153,1.33E-10,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+3_prime_UTR_variant
+downstream_gene_variant
+",27881726
+osa8682855,"medium-chain amylopectin percent",Rice,chr6:1637153,4.08E-10,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+3_prime_UTR_variant
+downstream_gene_variant
+",27881726
+osa8682855,"short-chain amylopectin percent",Rice,chr6:1637153,1.14E-08,'-,"Os06g0130400
+Os06g0130600
+Os06g0130500
+","downstream_gene_variant
+3_prime_UTR_variant
+downstream_gene_variant
+",27881726
+osa8683130,"amylose content",Rice,chr6:1643938,7.71E-07,14.10,"Os06g0131100
+Os06g0131050
+Os06g0130900
+Os06g0130600
+Os06g0131001
+Os06g0130800
+","upstream_gene_variant
+downstream_gene_variant
+downstream_gene_variant
+upstream_gene_variant
+upstream_gene_variant
+upstream_gene_variant
+",30744863
