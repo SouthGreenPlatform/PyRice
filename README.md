@@ -20,7 +20,7 @@
     ```
     
 - Now there is only version available (should use the latest version):
-     - Version 0.1.9: PyRice on Google Colab or other cloud platform. Updating the change output format.
+     - Verrsion 0.2.0: Update reference for gene from Oryzabase. Add 2 new databases PlantTFDB for PyRice
         * If you install PyRice on your local machine, please follow these steps:
             + Please check carefully the current version of Chrome on your computer before downloading
             + Download the [Chrome driver](https://chromedriver.chromium.org/downloads).
@@ -29,7 +29,10 @@
                 from pyrice import utils
                 utils.chrome_path = "the path of your Chrome driver"
                 ``` 
-    - Version 0.1.8: Addition of crawling JavaScript data with Selenium.
+  
+     - Version 0.1.9: PyRice on Google Colab or other cloud platform. Updating the change output format.
+ 
+     - Version 0.1.8: Addition of crawling JavaScript data with Selenium.
     
 **IN PROCESS**: If you want to install the newest demo of PyRice: 
 ```
@@ -219,6 +222,7 @@ Database_name: keywords
 * [EMBL-EBI Expression Atlas](https://www.ebi.ac.uk/gxa/home) : embl_ebi
 * [GWAS-ATLAS](https://bigd.big.ac.cn/gwas/#) : gwas_atlas
 * [Planteome](http://planteome.org) : planteome
+* [AgroLD](http://www.agrold.org) : planttfdb_tf, planttfdb_target_gene
 
 **Keywords are value of arguments in query module.**
 

@@ -13,5 +13,7 @@ Database_name: keywords
 - `EMBL-EBI Expression Atlas <https://www.ebi.ac.uk/gxa/home>`_ : embl_ebi
 - `GWAS-ATLAS <https://bigd.big.ac.cn/gwas/#>`_ : gwas_atlas
 - `Planteome <http://planteome.org>`_ : planteome
+- `PlantTFDB <https://www.southgreen.fr/>`_ : plantfdb_tf, plantfdb_target_gene
+
 
 .. note:: Keywords are value of arguments in query module

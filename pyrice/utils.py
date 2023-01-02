@@ -9,6 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import TimeoutException,WebDriverException
 from time import sleep
+import json
 
 chrome_path = ""
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -34,7 +35,7 @@ def connection_error(link, data = "", type = None, db = None, gene_id=None):
 
     :return: object of requests
     """
-    if type =="javascript":
+    if type == "javascript":
         options = webdriver.ChromeOptions()
 
         profile = {"plugins.plugins_list": [{"enabled": False, "name": "Chrome PDF Viewer"}],
@@ -98,14 +99,22 @@ def execute_query(db, qfields=[], verbose=False):
     #Get query qfields list
     fields = db[0].find_all("field")
     # Prepare URL
+
     link = db[0].find_all("link")[0]["stern"]
     # Compile URL
     if link[:4] == 'http':
         if db[0]["method"] == "POST":
+            data = {"format":"json"}
             i = 0
             for field in fields:
-                data = {field.text: qfields[i]}
-                i += 1
+                query = field.text.replace("GENE_ID",qfields[i])
+                data.setdefault("query",query)
+                i+=1
+            # i = 0
+            # data = {'format':'json'}
+            # for field in fields:
+            #     data.setdefault(field.text,qfields[i])
+            #     i += 1
             return connection_error(link, data)
         elif db[0]["method"] == "GET":
             query_string = ""

@@ -11,12 +11,12 @@ Install PyRice package (the newest version) with :command:`pip`::
 
 To choose older version of Pyrice package using :command:`pip`::
 
-    $ pip install pyrice==0.1.8
+    $ pip install pyrice==0.2.0
 
 
 Now there are 2 versions available (should use the latest version):
-    - Version 0.1.9: PyRice on Google Colab or other cloud platform. Updating the change output format.
-        - If you want to use Selenium, please follow these steps
+    - Version 0.2.0: Update reference for gene from Oryzabase. Add 2 new databases PlantTFDB for PyRice
+        - If you install PyRice on your local machine, please follow these steps:
 
             + Please check carefully the current version of Chrome on your computer before downloading
             + Download the `Chrome driver <https://chromedriver.chromium.org/downloads>`_
@@ -26,6 +26,8 @@ Now there are 2 versions available (should use the latest version):
                 >>> from pyrice import utils
                 >>> utils.chrome_path = "the path of your Chrome driver"
 
+
+    - Version 0.1.9: PyRice on Google Colab or other cloud platform. Updating the change output format.
 
     - Version 0.1.8: Addition of crawling JavaScript data with Selenium.
 
