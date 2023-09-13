@@ -69,7 +69,7 @@
     </database>
 
     <database dbname="gramene" type="text/JSON" method="GET" normalize="false">
-        <link stern="http://data.gramene.org/v60/genes?" aft=""/>
+        <link stern="https://data.gramene.org/v67/genes?" aft=""/>
         <fields>
             <field op="=">_id</field>
         </fields>
