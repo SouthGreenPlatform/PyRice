@@ -5,13 +5,13 @@ with open('README.md','r') as fh:
 
 setup(
     name = 'pyrice',
-    version = '0.2.7',
+    version = '0.2.10',
     description = 'PyRice: a Python package for functional analysis of rice genes',
     py_modules =['multi_query','utils','build_dictionary'],
     license = 'MIT',
     classifiers = [
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.8",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent"
     ],
