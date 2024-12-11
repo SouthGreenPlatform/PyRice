@@ -128,7 +128,12 @@ class MultiQuery():
         # Auto detect and support local csv databases
         fields = database_description[0].find_all("field")
         if (database_description[0]["type"] == "text/csv"):
-            if type(res) is requests.models.Response:
+            if db == "funricegene_genekeywords":
+                url=database_description[0].find_all("link")[0]["stern"]
+                data = pd.read_csv(url, sep='\t', encoding=database_description[0]["encoding"])
+                # Convert to list of lists for compatibility
+                ret = data.values.tolist()      
+            elif type(res) is requests.models.Response:
                 ret = csv.reader(res.content.decode(database_description[0]["encoding"]).splitlines(),
                                  delimiter=list(database_description[0]["deli"])[0], quoting=csv.QUOTE_NONE)
             else:
@@ -144,6 +149,7 @@ class MultiQuery():
                     dict_ = {}
                     for header in headers:
                         dict_[header] = row[i]
+                        #print(row[i])
                         i += 1
                     f = 0
                     for field in fields:
@@ -444,8 +450,8 @@ class MultiQuery():
         """
         #Check support of database
         support_db = ["oryzabase", "rapdb", "gramene", "funricegene_genekeywords",
-                   "funricegene_faminfo", "msu", "ic4r",
-                   "funricegene_geneinfo","embl_ebi","gwas_atlas","planttfdb_tf","planttfdb_target_gene"]
+                   "funricegene_faminfo", "msu",
+                   "funricegene_geneinfo","embl_ebi","gwas_atlas","planttfdb_tf","planttfdb_target_gene"]# ic4r,
         if dbs == 'all':
             name_db = support_db
         else:
