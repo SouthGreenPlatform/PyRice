@@ -34,7 +34,7 @@
             <field>BASE &lt;http://www.southgreen.fr/agrold/&gt; PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#&gt; PREFIX obo: &lt;http://purl.obolibrary.org/obo/&gt; PREFIX vocab:&lt;vocabulary/&gt; SELECT DISTINCT ?target_gene ?association_score WHERE {&lt;http://www.southgreen.fr/agrold/resource/GENE_ID&gt; obo:RO_0002328 ?associatedWith . ?associatedWith vocab:associationTarget ?target_gene; vocab:associationValue ?association_score. }</field>
         </fields>
     </database>
-
+<!-- 
     <database dbname="rnd" type="text/html" method="GET">
         <link stern="https://bis.zju.edu.cn/ricenetdb/genenetwork.php?" aft=""/>
         <headers>
@@ -46,7 +46,7 @@
         </fields>
         <data_struct indicator="div" identifier="align" identification_string="center" line_separator="tr" cell_separator="td"/>
         <prettify replaceBy=' '>\n>LOC_.*\n|\n|\r|\t|\xa0</prettify>
-    </database>
+    </database> -->
 
     <database dbname="rapdb" type="text/html" method="GET">
         <link stern="https://rapdb.dna.affrc.go.jp/tools/search/run?type=locus&amp;" aft="&amp;submit=Search&amp;id=on&amp;size=10"/>
@@ -83,7 +83,7 @@
     </database>
 
     <database dbname="ic4r" type="text/JSON" method="GET">
-        <link stern="http://expression.ic4r.org/api/fpkm?" aft=""/>
+        <link stern="https://ngdc.cncb.ac.cn/red/global-search?" aft=""/>
         <headers>
             <header type="">All</header>
             <header type="">OS Gene ID</header>
@@ -139,13 +139,13 @@
         <!--</fields>-->
     <!--</database>-->
 
-    <database dbname="gwas_atlas" type="javascript" method="GET">
+    <!-- <database dbname="gwas_atlas" type="javascript" method="GET">
         <link stern="https://bigd.big.ac.cn/gwas/gene/getGeneAssociation?" aft=""/>
         <button class="btn btn-default btn-undefined dropdown-toggle" title="Export data"></button>
         <fields>
             <field op="=">param</field>
         </fields>
-    </database>
+    </database> -->
 
     <database dbname="plntfdb" type="text/html" method="GET">
         <link stern="http://plntfdb.bio.uni-potsdam.de/v3.0/get_id.php?" aft=""/>
@@ -161,7 +161,7 @@
         <prettify replaceBy='\s'>\n>LOC_.*\n|\n|\r|\t</prettify>
     </database>
 
-    <database dbname="funricegene_genekeywords" type="text/csv" method="GET" encoding="Windows-1252" deli="&#009;">
+    <database dbname="funricegene_genekeywords" type="text/csv" method="GET" encoding="latin-1" deli="&#009;">
         <link stern="https://funricegenes.github.io/geneKeyword.table.txt" aft=""/>
         <headers>
             <header>Symbol</header>
@@ -169,6 +169,8 @@
             <header>MSU</header>
             <header>Keyword</header>
             <header>Title</header>
+            <header>Evidence</header>
+
         </headers>
         <fields>
             <field>RAPdb</field>
@@ -176,7 +178,7 @@
         </fields>
     </database>
 
-    <database dbname="funricegene_faminfo" type="text/csv" method="GET" encoding="Windows-1252" deli="&#009;">
+    <database dbname="funricegene_faminfo" type="text/csv" method="GET" encoding="latin-1" deli="&#009;">
         <link stern="https://funricegenes.github.io/famInfo.table.txt" aft=""/>
         <headers>
             <header>Symbol</header>
@@ -190,7 +192,7 @@
         </fields>
     </database>
 
-    <database dbname="funricegene_geneinfo" type="text/csv" method="GET" encoding="Windows-1252" deli="&#009;">
+    <database dbname="funricegene_geneinfo" type="text/csv" method="GET" encoding="latin-1" deli="&#009;">
         <link stern="https://funricegenes.github.io/geneInfo.table.txt" aft=""/>
         <headers>
             <header>Symbol</header>
@@ -215,7 +217,7 @@
 
     <!--cell_separator="b"-->
      <database dbname="msu" type="text/html" method="GET">
-        <link stern="http://rice.plantbiology.msu.edu/cgi-bin/sequence_display.cgi?" aft=""/>
+        <link stern="https://rice.uga.edu/cgi-bin/ORF_infopage.cgi?" aft=""/>
         <headers>
             <header type="">Genomic Sequence</header>
             <header type="">CDS</header>
