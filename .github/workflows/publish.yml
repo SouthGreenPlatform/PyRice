@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/pyrice
+      url: https://pypi.org/project/pyrice/${{ github.event.release.name }}
+
     permissions:
       id-token: write
     steps:
